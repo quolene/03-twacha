@@ -1,5 +1,5 @@
-#Twacha
-Was trying to buy a sunscreen. 
+
+I was trying to buy a sunscreen. 
 Ended up with seven tabs open, three conflicting reviews, and no idea what half the ingredients meant.
 Spreadsheets felt like overkill. Googling each ingredient separately definitely wasn't enough.
 
