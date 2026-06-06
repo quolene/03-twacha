@@ -1,7 +1,7 @@
 
 I was trying to buy a sunscreen. 
 Ended up with seven tabs open, three conflicting reviews, and no idea what half the ingredients meant.
-Spreadsheets felt like overkill. Googling each ingredient separately definitely wasn't enough.
+Spreadsheets wasn't it. Googling each ingredient separately definitely was very time and efforts consuming
 
 So: search once, see all five prices, understand what's actually in it. That's the whole thing.
 Search by product, brand, or ingredient. Filter by skin type. Enter your pincode and see how fast it reaches you. Ask the guide if you're confused about something — it won't upsell you.
