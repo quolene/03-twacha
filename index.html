@@ -9,853 +9,397 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
 :root{
-  /* Light mode — warm parchment + deep forest */
-  --bg:          #f6f3ee;
-  --bg2:         #eeeae2;
-  --bg3:         #e5e0d6;
-  --surface:     #faf8f4;
-  --surface2:    #f1ede6;
-  --border:      #d8d2c6;
-  --border2:     #c8c0b2;
-
-  --forest:      #1b3a2f;
-  --forest2:     #254d3f;
-  --forest3:     #2f6050;
-  --moss:        #4a7c65;
-  --moss-light:  #6a9e85;
-  --mint:        #c8e6da;
-  --mint-pale:   #e8f4ef;
-
-  --amber:       #c07830;
-  --amber-light: #d4944a;
-  --amber-pale:  #f5e8d4;
-  --amber-pale2: #f0dfc4;
-
-  --ink:         #1a1e1c;
-  --ink2:        #3a4440;
-  --ink3:        #6a7870;
-  --ink4:        #9aaca4;
-  --white:       #ffffff;
-
-  --shadow-sm:   0 1px 6px rgba(26,62,47,0.08);
-  --shadow:      0 4px 20px rgba(26,62,47,0.10);
-  --shadow-lg:   0 12px 48px rgba(26,62,47,0.14);
-  --shadow-xl:   0 24px 80px rgba(26,62,47,0.18);
-
-  --radius:      10px;
-  --radius-sm:   6px;
+  --bg:#f6f3ee;--bg2:#eeeae2;--bg3:#e5e0d6;
+  --surface:#faf8f4;--surface2:#f1ede6;
+  --border:#d8d2c6;--border2:#c8c0b2;
+  --forest:#1b3a2f;--forest2:#254d3f;--forest3:#2f6050;
+  --moss:#4a7c65;--moss-light:#6a9e85;
+  --mint:#c8e6da;--mint-pale:#e8f4ef;
+  --amber:#c07830;--amber-light:#d4944a;
+  --amber-pale:#f5e8d4;--amber-pale2:#f0dfc4;
+  --ink:#1a1e1c;--ink2:#3a4440;--ink3:#6a7870;--ink4:#9aaca4;
+  --white:#ffffff;
+  --shadow-sm:0 1px 6px rgba(26,62,47,0.08);
+  --shadow:0 4px 20px rgba(26,62,47,0.10);
+  --shadow-lg:0 12px 48px rgba(26,62,47,0.14);
+  --radius:10px;--radius-sm:6px;
 }
-
 [data-theme="dark"]{
-  --bg:          #0e1512;
-  --bg2:         #141c18;
-  --bg3:         #1a2420;
-  --surface:     #1f2b26;
-  --surface2:    #172019;
-  --border:      #2a3c34;
-  --border2:     #344d42;
-
-  --forest:      #4a9a78;
-  --forest2:     #5aaa88;
-  --forest3:     #6aba98;
-  --moss:        #7abda0;
-  --moss-light:  #8ecdae;
-  --mint:        #1e3a30;
-  --mint-pale:   #162a22;
-
-  --amber:       #d4944a;
-  --amber-light: #e4a85a;
-  --amber-pale:  #2a1e0e;
-  --amber-pale2: #241a0c;
-
-  --ink:         #e8f0ec;
-  --ink2:        #b8cec4;
-  --ink3:        #7a9c90;
-  --ink4:        #4a6a60;
-  --white:       #1f2b26;
-
-  --shadow-sm:   0 1px 6px rgba(0,0,0,0.4);
-  --shadow:      0 4px 20px rgba(0,0,0,0.5);
-  --shadow-lg:   0 12px 48px rgba(0,0,0,0.6);
-  --shadow-xl:   0 24px 80px rgba(0,0,0,0.7);
+  --bg:#0e1512;--bg2:#141c18;--bg3:#1a2420;
+  --surface:#1f2b26;--surface2:#172019;
+  --border:#2a3c34;--border2:#344d42;
+  --forest:#4a9a78;--forest2:#5aaa88;--forest3:#6aba98;
+  --moss:#7abda0;--moss-light:#8ecdae;
+  --mint:#1e3a30;--mint-pale:#162a22;
+  --amber:#d4944a;--amber-light:#e4a85a;
+  --amber-pale:#2a1e0e;--amber-pale2:#241a0c;
+  --ink:#e8f0ec;--ink2:#b8cec4;--ink3:#7a9c90;--ink4:#4a6a60;
+  --white:#1f2b26;
+  --shadow-sm:0 1px 6px rgba(0,0,0,0.4);
+  --shadow:0 4px 20px rgba(0,0,0,0.5);
+  --shadow-lg:0 12px 48px rgba(0,0,0,0.6);
 }
 
 html{scroll-behavior:smooth;font-size:16px;}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg);
-  color:var(--ink);
-  min-height:100vh;
-  transition:background 0.45s ease,color 0.45s ease;
-  overflow-x:hidden;
-}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;transition:background 0.45s ease,color 0.45s ease;overflow-x:hidden;}
 
-/* ── NOISE GRAIN OVERLAY ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  opacity:0.4;
-  pointer-events:none;
-  z-index:1000;
-}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");opacity:0.4;pointer-events:none;z-index:1000;}
 
 /* ── HEADER ── */
-.header{
-  background:var(--forest);
-  padding:0 32px;
-  height:66px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:100;
-  border-bottom:1px solid rgba(255,255,255,0.06);
-}
-[data-theme="dark"] .header{
-  background:var(--bg2);
-  border-bottom:1px solid var(--border);
-}
-
+.header{background:var(--forest);padding:0 32px;height:66px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,0.06);}
+[data-theme="dark"] .header{background:var(--bg2);border-bottom:1px solid var(--border);}
 .brand{display:flex;align-items:center;gap:13px;text-decoration:none;}
-
-/* ── MONOGRAM SVG ── */
 .monogram{width:42px;height:42px;flex-shrink:0;}
-
 .brand-text{display:flex;flex-direction:column;line-height:1;}
-.brand-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:22px;font-weight:600;
-  color:#f6f3ee;
-  letter-spacing:0.04em;
-}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#f6f3ee;letter-spacing:0.04em;}
 .brand-name span{color:var(--amber-light);}
-.brand-sub{
-  font-family:'DM Mono',monospace;
-  font-size:8px;
-  color:rgba(200,230,218,0.55);
-  letter-spacing:0.22em;
-  text-transform:uppercase;
-  margin-top:3px;
-}
-
+.brand-sub{font-family:'DM Mono',monospace;font-size:8px;color:rgba(200,230,218,0.55);letter-spacing:0.22em;text-transform:uppercase;margin-top:3px;}
 .header-right{display:flex;align-items:center;gap:12px;}
 
-/* Theme toggle */
-.theme-toggle{
-  position:relative;
-  width:44px;height:24px;
-  background:rgba(255,255,255,0.1);
-  border-radius:12px;border:1px solid rgba(255,255,255,0.15);
-  cursor:pointer;
-  transition:background 0.3s;
-  flex-shrink:0;
-}
-[data-theme="dark"] .theme-toggle{
-  background:var(--border2);
-  border-color:var(--border2);
-}
-.theme-toggle-thumb{
-  position:absolute;
-  top:3px;left:3px;
-  width:16px;height:16px;
-  border-radius:50%;
-  background:var(--amber-light);
-  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  display:flex;align-items:center;justify-content:center;
-  font-size:8px;
-  line-height:1;
-}
-[data-theme="dark"] .theme-toggle-thumb{transform:translateX(20px);}
+/* MAIN NAV BAR */
+.main-nav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:stretch;padding:0 24px;gap:0;position:sticky;top:66px;z-index:99;}
+[data-theme="dark"] .main-nav{background:var(--bg2);border-color:var(--border);}
+.main-nav-tab{display:flex;align-items:center;gap:7px;padding:0 20px;height:46px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--ink3);cursor:pointer;transition:all 0.18s;letter-spacing:0.01em;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0;}
+.main-nav-tab svg{opacity:0.6;transition:opacity 0.18s;}
+.main-nav-tab:hover{color:var(--ink);background:var(--bg2);}
+[data-theme="dark"] .main-nav-tab:hover{background:var(--bg3);}
+.main-nav-tab:hover svg{opacity:1;}
+.main-nav-tab.active{color:var(--forest);border-bottom-color:var(--amber);font-weight:600;}
+[data-theme="dark"] .main-nav-tab.active{color:var(--moss);border-bottom-color:var(--amber);}
+.main-nav-tab.active svg{opacity:1;}
+@media(max-width:480px){.main-nav{padding:0 8px;}.main-nav-tab{padding:0 12px;font-size:12px;gap:5px;}}
 
-.ask-btn{
-  background:var(--amber);
-  color:#f6f3ee;
-  border:none;border-radius:var(--radius-sm);
-  padding:10px 18px;
-  font-family:'DM Sans',sans-serif;
-  font-size:12px;font-weight:600;
-  letter-spacing:0.07em;text-transform:uppercase;
-  cursor:pointer;
-  display:flex;align-items:center;gap:8px;
-  transition:background 0.2s,transform 0.15s,box-shadow 0.2s;
-  box-shadow:0 2px 8px rgba(192,120,48,0.35);
-}
+.theme-toggle{position:relative;width:44px;height:24px;background:rgba(255,255,255,0.1);border-radius:12px;border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:background 0.3s;flex-shrink:0;}
+[data-theme="dark"] .theme-toggle{background:var(--border2);border-color:var(--border2);}
+.theme-toggle-thumb{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--amber-light);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);display:flex;align-items:center;justify-content:center;font-size:8px;line-height:1;}
+[data-theme="dark"] .theme-toggle-thumb{transform:translateX(20px);}
+.ask-btn{background:var(--amber);color:#f6f3ee;border:none;border-radius:var(--radius-sm);padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 2px 8px rgba(192,120,48,0.35);}
 .ask-btn:hover{background:var(--amber-light);transform:translateY(-1px);box-shadow:0 4px 16px rgba(192,120,48,0.45);}
 .ask-btn svg{width:13px;height:13px;}
 
+/* ── SUGGESTED FOR YOU ── */
+.suggested-inner{max-width:1000px;margin:0 auto;padding:28px 32px 0;}
+.suggested-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);margin-bottom:5px;}
+.suggested-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.suggested-sub{font-size:12px;color:var(--ink3);font-weight:300;margin-bottom:18px;}
+.suggested-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:28px;}
+.scard{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius-sm);padding:16px;display:flex;align-items:flex-start;gap:13px;animation:fadeUp 0.35s ease both;transition:box-shadow 0.2s,border-color 0.2s;cursor:default;}
+.scard:hover{box-shadow:var(--shadow);border-color:var(--border2);}
+.scard-icon{font-size:26px;flex-shrink:0;margin-top:2px;}
+.scard-body{flex:1;min-width:0;}
+.scard-brand{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--forest3);margin-bottom:2px;}
+[data-theme="dark"] .scard-brand{color:var(--moss);}
+.scard-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:var(--ink);line-height:1.25;margin-bottom:3px;}
+.scard-cat{font-size:9px;color:var(--ink4);font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:5px;}
+.scard-rating{font-size:10px;color:var(--amber);letter-spacing:1px;}
+.scard-rating-num{color:var(--ink3);font-family:'DM Mono',monospace;font-size:9.5px;margin-left:4px;}
+.scard-price{text-align:right;flex-shrink:0;}
+.scard-price-from{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:1px;}
+.scard-price-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);line-height:1;}
+.scard-price-where{font-size:9px;color:var(--moss);font-family:'DM Mono',monospace;letter-spacing:0.06em;}
+[data-theme="dark"] .scard-price-where{color:var(--forest2);}
+@media(max-width:640px){.suggested-inner{padding:20px 18px 0;}.suggested-cards{grid-template-columns:1fr;}}
+
+/* ── VIEWS ── */
+.view{display:none;}
+.view.active{display:block;}
+
 /* ── HERO ── */
-.hero{
-  background:var(--forest);
-  padding:64px 32px 56px;
-  position:relative;
-  overflow:hidden;
-}
-[data-theme="dark"] .hero{
-  background:var(--bg2);
-  border-bottom:1px solid var(--border);
-}
-
-/* Decorative circles */
-.hero::before{
-  content:'';position:absolute;
-  top:-80px;right:-80px;
-  width:480px;height:480px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(192,120,48,0.07) 0%, transparent 70%);
-  pointer-events:none;
-}
-.hero::after{
-  content:'';position:absolute;
-  bottom:-120px;left:-60px;
-  width:360px;height:360px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(74,124,101,0.08) 0%, transparent 70%);
-  pointer-events:none;
-}
-.hero-lines{
-  position:absolute;top:0;right:0;bottom:0;
-  width:45%;
-  opacity:0.04;
-  pointer-events:none;
-  overflow:hidden;
-}
+.hero{background:var(--forest);padding:64px 32px 56px;position:relative;overflow:hidden;}
+[data-theme="dark"] .hero{background:var(--bg2);border-bottom:1px solid var(--border);}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle, rgba(192,120,48,0.07) 0%, transparent 70%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-120px;left:-60px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle, rgba(74,124,101,0.08) 0%, transparent 70%);pointer-events:none;}
+.hero-lines{position:absolute;top:0;right:0;bottom:0;width:45%;opacity:0.04;pointer-events:none;overflow:hidden;}
 .hero-lines svg{width:100%;height:100%;}
-
 .hero-inner{max-width:620px;position:relative;z-index:1;}
-
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  color:var(--amber-light);
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  margin-bottom:20px;
-}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--amber-light);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px;}
 .hero-eyebrow-line{width:28px;height:1px;background:var(--amber);opacity:0.6;}
-
-.hero-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(36px,5.5vw,60px);
-  font-weight:500;
-  color:#f6f3ee;
-  line-height:1.08;
-  letter-spacing:-0.01em;
-  margin-bottom:16px;
-}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5.5vw,60px);font-weight:500;color:#f6f3ee;line-height:1.08;letter-spacing:-0.01em;margin-bottom:16px;}
 [data-theme="dark"] .hero-title{color:var(--ink);}
-.hero-title em{
-  font-style:italic;
-  color:var(--amber-light);
-}
-
-.hero-body{
-  font-size:14px;
-  color:rgba(200,230,218,0.7);
-  line-height:1.72;
-  max-width:460px;
-  margin-bottom:12px;
-  font-weight:300;
-}
+.hero-title em{font-style:italic;color:var(--amber-light);}
+.hero-body{font-size:14px;color:rgba(200,230,218,0.7);line-height:1.72;max-width:460px;margin-bottom:12px;font-weight:300;}
 [data-theme="dark"] .hero-body{color:var(--ink3);}
-
-/* Cognitive hook — the "20 min" stat */
-.stat-hook{
-  display:inline-flex;align-items:baseline;gap:8px;
-  background:rgba(192,120,48,0.12);
-  border:1px solid rgba(192,120,48,0.2);
-  border-radius:4px;
-  padding:8px 14px;
-  margin-bottom:28px;
-  font-size:12px;
-  color:var(--amber-light);
-  font-family:'DM Mono',monospace;
-  letter-spacing:0.04em;
-}
+.stat-hook{display:inline-flex;align-items:baseline;gap:8px;background:rgba(192,120,48,0.12);border:1px solid rgba(192,120,48,0.2);border-radius:4px;padding:8px 14px;margin-bottom:28px;font-size:12px;color:var(--amber-light);font-family:'DM Mono',monospace;letter-spacing:0.04em;}
 .stat-hook strong{font-size:20px;font-weight:500;font-family:'Cormorant Garamond',serif;letter-spacing:0;}
-
-/* Search */
 .search-row{display:flex;gap:10px;max-width:560px;}
 .search-wrap{flex:1;position:relative;}
-.search-input{
-  width:100%;
-  padding:15px 18px 15px 48px;
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.13);
-  border-radius:var(--radius-sm);
-  font-family:'DM Sans',sans-serif;
-  font-size:14px;
-  color:#f6f3ee;
-  outline:none;
-  transition:background 0.2s,border-color 0.25s,box-shadow 0.25s;
-  letter-spacing:0.01em;
-}
-[data-theme="dark"] .search-input{
-  background:var(--bg3);
-  border-color:var(--border);
-  color:var(--ink);
-}
+.search-input{width:100%;padding:15px 18px 15px 48px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:14px;color:#f6f3ee;outline:none;transition:background 0.2s,border-color 0.25s,box-shadow 0.25s;letter-spacing:0.01em;}
+[data-theme="dark"] .search-input{background:var(--bg3);border-color:var(--border);color:var(--ink);}
 .search-input::placeholder{color:rgba(200,230,218,0.4);}
 [data-theme="dark"] .search-input::placeholder{color:var(--ink4);}
-.search-input:focus{
-  background:rgba(255,255,255,0.11);
-  border-color:var(--amber);
-  box-shadow:0 0 0 3px rgba(192,120,48,0.12);
-}
-[data-theme="dark"] .search-input:focus{
-  background:var(--surface);
-  border-color:var(--amber);
-}
-.search-icon-wrap{
-  position:absolute;left:16px;top:50%;transform:translateY(-50%);
-  color:rgba(200,230,218,0.45);
-  pointer-events:none;font-size:16px;
-}
+.search-input:focus{background:rgba(255,255,255,0.11);border-color:var(--amber);box-shadow:0 0 0 3px rgba(192,120,48,0.12);}
+[data-theme="dark"] .search-input:focus{background:var(--surface);border-color:var(--amber);}
+.search-icon-wrap{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:rgba(200,230,218,0.45);pointer-events:none;font-size:16px;}
 [data-theme="dark"] .search-icon-wrap{color:var(--ink4);}
-.search-go{
-  background:var(--amber);
-  color:#f6f3ee;
-  border:none;border-radius:var(--radius-sm);
-  padding:0 24px;
-  font-family:'DM Sans',sans-serif;
-  font-size:13px;font-weight:600;
-  letter-spacing:0.05em;
-  cursor:pointer;
-  transition:background 0.2s,box-shadow 0.2s;
-  white-space:nowrap;
-  box-shadow:0 2px 8px rgba(192,120,48,0.3);
-}
+.search-go{background:var(--amber);color:#f6f3ee;border:none;border-radius:var(--radius-sm);padding:0 24px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.05em;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;white-space:nowrap;box-shadow:0 2px 8px rgba(192,120,48,0.3);}
 .search-go:hover{background:var(--amber-light);box-shadow:0 4px 14px rgba(192,120,48,0.4);}
-
-/* Trust strip */
-.trust-strip{
-  display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;
-}
-.trust-item{
-  display:flex;align-items:center;gap:7px;
-  font-size:11px;
-  color:rgba(200,230,218,0.5);
-  font-family:'DM Mono',monospace;
-  letter-spacing:0.05em;
-}
+.trust-strip{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(200,230,218,0.5);font-family:'DM Mono',monospace;letter-spacing:0.05em;}
 [data-theme="dark"] .trust-item{color:var(--ink4);}
-.trust-check{
-  width:16px;height:16px;
-  border-radius:50%;
-  background:rgba(74,124,101,0.3);
-  border:1px solid rgba(74,124,101,0.5);
-  display:flex;align-items:center;justify-content:center;
-  font-size:8px;color:var(--moss-light);
-  flex-shrink:0;
-}
+.trust-check{width:16px;height:16px;border-radius:50%;background:rgba(74,124,101,0.3);border:1px solid rgba(74,124,101,0.5);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--moss-light);flex-shrink:0;}
 
-/* ── SKIN FILTER ── */
-.filter-bar{
-  background:var(--surface);
-  border-bottom:1px solid var(--border);
-  padding:14px 32px;
-  display:flex;align-items:center;gap:16px;
-  flex-wrap:wrap;
-}
+/* ── FILTER + PINCODE ── */
+.filter-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
 [data-theme="dark"] .filter-bar{background:var(--bg2);border-color:var(--border);}
-.filter-label{
-  font-family:'DM Mono',monospace;
-  font-size:9px;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--ink4);
-  white-space:nowrap;
-  flex-shrink:0;
-}
+.filter-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink4);white-space:nowrap;flex-shrink:0;}
 .chips{display:flex;gap:7px;flex-wrap:wrap;}
-.chip{
-  padding:7px 15px;
-  border-radius:20px;
-  border:1px solid var(--border);
-  background:transparent;
-  font-family:'DM Sans',sans-serif;
-  font-size:11px;font-weight:500;
-  color:var(--ink3);
-  cursor:pointer;
-  transition:all 0.15s;
-  letter-spacing:0.02em;
-}
+.chip{padding:7px 15px;border-radius:20px;border:1px solid var(--border);background:transparent;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ink3);cursor:pointer;transition:all 0.15s;letter-spacing:0.02em;}
 .chip:hover{border-color:var(--moss);color:var(--moss);}
-.chip.active{
-  background:var(--forest);color:#f6f3ee;
-  border-color:var(--forest);
-}
-[data-theme="dark"] .chip.active{
-  background:var(--moss);color:#0e1512;
-  border-color:var(--moss);
-}
-
-/* ── PINCODE BAR ── */
-.pincode-bar{
-  background:var(--amber-pale);
-  border-bottom:1px solid var(--amber-pale2);
-  padding:10px 32px;
-  display:flex;align-items:center;gap:12px;
-  flex-wrap:wrap;
-}
-[data-theme="dark"] .pincode-bar{
-  background:var(--amber-pale);
-  border-color:rgba(212,148,74,0.15);
-}
-.pincode-label{
-  font-family:'DM Mono',monospace;
-  font-size:9px;letter-spacing:0.16em;text-transform:uppercase;
-  color:var(--amber);flex-shrink:0;
-}
+.chip.active{background:var(--forest);color:#f6f3ee;border-color:var(--forest);}
+[data-theme="dark"] .chip.active{background:var(--moss);color:#0e1512;border-color:var(--moss);}
+.pincode-bar{background:var(--amber-pale);border-bottom:1px solid var(--amber-pale2);padding:10px 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+[data-theme="dark"] .pincode-bar{background:var(--amber-pale);border-color:rgba(212,148,74,0.15);}
+.pincode-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber);flex-shrink:0;}
 .pincode-input-wrap{display:flex;gap:8px;align-items:center;}
-.pincode-input{
-  padding:7px 12px;
-  border:1px solid var(--border2);
-  border-radius:var(--radius-sm);
-  background:var(--surface);
-  font-family:'DM Mono',monospace;
-  font-size:13px;
-  color:var(--ink);
-  width:120px;
-  outline:none;
-  letter-spacing:0.08em;
-  transition:border-color 0.2s,box-shadow 0.2s;
-}
-[data-theme="dark"] .pincode-input{
-  background:var(--bg3);
-  border-color:var(--border2);
-  color:var(--ink);
-}
+.pincode-input{padding:7px 12px;border:1px solid var(--border2);border-radius:var(--radius-sm);background:var(--surface);font-family:'DM Mono',monospace;font-size:13px;color:var(--ink);width:120px;outline:none;letter-spacing:0.08em;transition:border-color 0.2s,box-shadow 0.2s;}
+[data-theme="dark"] .pincode-input{background:var(--bg3);border-color:var(--border2);color:var(--ink);}
 .pincode-input:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(192,120,48,0.1);}
-.pincode-btn{
-  padding:7px 14px;
-  background:var(--amber);color:#f6f3ee;
-  border:none;border-radius:var(--radius-sm);
-  font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;
-  letter-spacing:0.05em;cursor:pointer;
-  transition:background 0.2s;
-}
+.pincode-btn{padding:7px 14px;background:var(--amber);color:#f6f3ee;border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.05em;cursor:pointer;transition:background 0.2s;}
 .pincode-btn:hover{background:var(--amber-light);}
-.pincode-status{
-  font-size:11px;color:var(--ink3);
-  font-family:'DM Mono',monospace;
-  letter-spacing:0.04em;
-}
+.pincode-status{font-size:11px;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.04em;}
 .pincode-status.set{color:var(--moss);}
 
 /* ── RESULTS ── */
-.results-wrap{
-  padding:32px 32px 80px;
-  max-width:1000px;margin:0 auto;
-}
-
-.results-meta{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:24px;
-  padding-bottom:16px;
-  border-bottom:1px solid var(--border);
-}
-.results-context{
-  font-family:'DM Mono',monospace;
-  font-size:10px;letter-spacing:0.10em;text-transform:uppercase;
-  color:var(--ink3);
-  display:flex;align-items:center;gap:8px;
-}
+.results-wrap{padding:32px 32px 80px;max-width:1000px;margin:0 auto;}
+.results-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.results-context{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.10em;text-transform:uppercase;color:var(--ink3);display:flex;align-items:center;gap:8px;}
 .results-context-dot{width:5px;height:5px;border-radius:50%;background:var(--moss);opacity:0.6;flex-shrink:0;}
 .results-note{font-size:11px;color:var(--ink4);font-family:'DM Mono',monospace;letter-spacing:0.04em;}
 
 /* ── PRODUCT CARD ── */
-.pcard{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  margin-bottom:24px;
-  overflow:hidden;
-  box-shadow:var(--shadow-sm);
-  animation:fadeUp 0.4s ease both;
-  transition:box-shadow 0.25s,border-color 0.25s;
-}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:24px;overflow:hidden;box-shadow:var(--shadow-sm);animation:fadeUp 0.4s ease both;transition:box-shadow 0.25s,border-color 0.25s;}
 .pcard:hover{box-shadow:var(--shadow);border-color:var(--border2);}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(14px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-/* Card header accent line */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 .pcard-accent{height:3px;background:linear-gradient(90deg,var(--forest3),var(--amber));opacity:0.7;}
 [data-theme="dark"] .pcard-accent{opacity:0.5;}
-
-.pcard-top{
-  padding:22px 22px 18px;
-  display:flex;gap:18px;
-  border-bottom:1px solid var(--border);
-}
-.pcard-icon{
-  width:68px;height:68px;flex-shrink:0;
-  background:var(--mint-pale);
-  border-radius:var(--radius-sm);
-  border:1px solid var(--mint);
-  display:flex;align-items:center;justify-content:center;
-  font-size:28px;
-}
+.pcard-top{padding:22px 22px 18px;display:flex;gap:18px;border-bottom:1px solid var(--border);}
+.pcard-icon{width:68px;height:68px;flex-shrink:0;background:var(--mint-pale);border-radius:var(--radius-sm);border:1px solid var(--mint);display:flex;align-items:center;justify-content:center;font-size:28px;}
 [data-theme="dark"] .pcard-icon{background:var(--mint);border-color:var(--border2);}
 .pcard-info{flex:1;min-width:0;}
-
 .pcard-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
-.pcard-brand{
-  font-family:'DM Mono',monospace;
-  font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--forest3);font-weight:500;
-}
+.pcard-brand{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--forest3);font-weight:500;}
 [data-theme="dark"] .pcard-brand{color:var(--moss);}
-.pcard-cat{
-  font-size:8.5px;padding:2px 8px;border-radius:3px;
-  background:var(--amber-pale);color:var(--amber);
-  font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;
-  border:1px solid rgba(192,120,48,0.2);
-}
+.pcard-cat{font-size:8.5px;padding:2px 8px;border-radius:3px;background:var(--amber-pale);color:var(--amber);font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;border:1px solid rgba(192,120,48,0.2);}
 [data-theme="dark"] .pcard-cat{background:var(--amber-pale);color:var(--amber-light);border-color:rgba(212,148,74,0.2);}
-.pcard-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:20px;font-weight:500;
-  color:var(--ink);line-height:1.2;margin-bottom:6px;
-}
+.pcard-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--ink);line-height:1.2;margin-bottom:6px;}
 .pcard-desc{font-size:12.5px;color:var(--ink2);line-height:1.6;font-weight:300;}
-
 .skin-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px;}
-.skin-tag{
-  font-size:9px;padding:3px 9px;border-radius:20px;
-  background:var(--mint-pale);color:var(--moss);
-  font-family:'DM Mono',monospace;letter-spacing:0.04em;
-  border:1px solid var(--mint);
-}
+.skin-tag{font-size:9px;padding:3px 9px;border-radius:20px;background:var(--mint-pale);color:var(--moss);font-family:'DM Mono',monospace;letter-spacing:0.04em;border:1px solid var(--mint);}
 [data-theme="dark"] .skin-tag{background:var(--mint);color:var(--forest2);border-color:var(--border2);}
-
-/* Rating */
-.rating-row{
-  display:flex;align-items:center;gap:12px;
-  margin-top:12px;
-  padding-top:12px;
-  border-top:1px solid var(--border);
-}
-.rating-big{
-  font-family:'Cormorant Garamond',serif;
-  font-size:28px;font-weight:600;color:var(--forest3);line-height:1;
-}
+.rating-row{display:flex;align-items:center;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+.rating-big{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--forest3);line-height:1;}
 [data-theme="dark"] .rating-big{color:var(--moss);}
 .rating-stars{color:var(--amber);font-size:11px;letter-spacing:2px;}
 .rating-bars{display:flex;flex-direction:column;gap:4px;}
 .rating-bar-row{display:flex;align-items:center;gap:7px;font-size:9.5px;color:var(--ink4);font-family:'DM Mono',monospace;}
 .rbar-track{width:56px;height:3px;background:var(--bg3);border-radius:2px;}
 .rbar-fill{height:100%;background:var(--moss-light);border-radius:2px;transition:width 0.6s ease;}
-
-/* Bottom section */
-.pcard-bottom{
-  padding:18px 22px;
-  background:var(--surface2);
-  display:flex;flex-direction:column;gap:18px;
-}
+.pcard-bottom{padding:18px 22px;background:var(--surface2);display:flex;flex-direction:column;gap:18px;}
 [data-theme="dark"] .pcard-bottom{background:var(--bg);}
-
-.sec-label{
-  font-family:'DM Mono',monospace;
-  font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;
-  color:var(--ink4);margin-bottom:8px;
-}
-
-/* Ingredients */
+.sec-label{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink4);margin-bottom:8px;}
 .ing-row{display:flex;gap:6px;flex-wrap:wrap;}
-.ing{
-  font-size:10px;padding:4px 11px;border-radius:4px;
-  border:1px solid var(--border);
-  color:var(--ink3);font-family:'DM Mono',monospace;
-  background:var(--surface);letter-spacing:0.02em;
-  transition:all 0.15s;
-}
+.ing{font-size:10px;padding:4px 11px;border-radius:4px;border:1px solid var(--border);color:var(--ink3);font-family:'DM Mono',monospace;background:var(--surface);letter-spacing:0.02em;transition:all 0.15s;}
 .ing:hover{border-color:var(--border2);color:var(--ink2);}
-.ing.star{
-  border-color:rgba(192,120,48,0.4);
-  color:var(--amber);
-  background:var(--amber-pale);
-}
-[data-theme="dark"] .ing.star{
-  border-color:rgba(212,148,74,0.3);
-  color:var(--amber-light);
-  background:var(--amber-pale);
-}
-
-/* Platform grid */
-.platforms-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:10px;
-}
-.plat{
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  padding:12px 13px;
-  background:var(--surface);
-  cursor:pointer;
-  transition:border-color 0.15s,transform 0.15s,box-shadow 0.15s;
-  position:relative;overflow:hidden;
-}
-.plat::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,0.02),transparent);
-  pointer-events:none;
-}
-.plat:hover{
-  border-color:var(--moss);
-  transform:translateY(-2px);
-  box-shadow:var(--shadow-sm);
-}
-.plat.best{
-  border-color:var(--forest3);
-  background:var(--mint-pale);
-}
-[data-theme="dark"] .plat.best{
-  border-color:var(--moss);
-  background:var(--mint);
-}
-.best-badge{
-  font-size:7.5px;font-family:'DM Mono',monospace;
-  letter-spacing:0.1em;text-transform:uppercase;
-  background:var(--forest);color:#f6f3ee;
-  padding:2px 7px;border-radius:3px;
-  display:inline-block;margin-bottom:6px;
-}
+.ing.star{border-color:rgba(192,120,48,0.4);color:var(--amber);background:var(--amber-pale);}
+[data-theme="dark"] .ing.star{border-color:rgba(212,148,74,0.3);color:var(--amber-light);background:var(--amber-pale);}
+.platforms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+.plat{border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 13px;background:var(--surface);cursor:pointer;transition:border-color 0.15s,transform 0.15s,box-shadow 0.15s;position:relative;overflow:hidden;}
+.plat:hover{border-color:var(--moss);transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+.plat.best{border-color:var(--forest3);background:var(--mint-pale);}
+[data-theme="dark"] .plat.best{border-color:var(--moss);background:var(--mint);}
+.best-badge{font-size:7.5px;font-family:'DM Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;background:var(--forest);color:#f6f3ee;padding:2px 7px;border-radius:3px;display:inline-block;margin-bottom:6px;}
 [data-theme="dark"] .best-badge{background:var(--moss);color:#0e1512;}
 .plat-name{font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:5px;}
-.plat-price{
-  font-family:'Cormorant Garamond',serif;
-  font-size:22px;font-weight:600;color:var(--ink);
-}
+.plat-price{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);}
 .plat-mrp{font-size:10px;color:var(--ink4);text-decoration:line-through;margin-left:4px;}
 .plat-disc{font-size:10px;color:var(--moss);font-weight:600;display:block;margin-top:2px;}
 [data-theme="dark"] .plat-disc{color:var(--forest2);}
 .plat-offer{font-size:9.5px;color:var(--amber);margin-top:4px;line-height:1.4;}
-.plat-delivery{
-  font-size:9px;color:var(--ink4);
-  font-family:'DM Mono',monospace;
-  margin-top:5px;letter-spacing:0.04em;
-  border-top:1px solid var(--border);
-  padding-top:5px;
-}
+.plat-delivery{font-size:9px;color:var(--ink4);font-family:'DM Mono',monospace;margin-top:5px;letter-spacing:0.04em;border-top:1px solid var(--border);padding-top:5px;}
 .plat-delivery.fast{color:var(--moss);}
 [data-theme="dark"] .plat-delivery.fast{color:var(--forest2);}
+.empty{text-align:center;padding:90px 24px;}
+.empty-glyph{font-family:'Cormorant Garamond',serif;font-size:52px;color:var(--border2);margin-bottom:16px;line-height:1;}
+.empty-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--ink3);margin-bottom:6px;}
+.empty-sub{font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.08em;color:var(--ink4);}
 
-/* ── EMPTY STATE ── */
-.empty{
-  text-align:center;padding:90px 24px;
-}
-.empty-glyph{
-  font-family:'Cormorant Garamond',serif;
-  font-size:52px;color:var(--border2);
-  margin-bottom:16px;
-  line-height:1;
-}
-.empty-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:26px;color:var(--ink3);margin-bottom:6px;
-}
-.empty-sub{
-  font-size:11px;font-family:'DM Mono',monospace;
-  letter-spacing:0.08em;color:var(--ink4);
-}
+/* ── GLOSSARY VIEW ── */
+.glossary-wrap{max-width:1000px;margin:0 auto;padding:36px 32px 80px;}
+.glossary-header{margin-bottom:28px;}
+.glossary-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:500;color:var(--ink);margin-bottom:8px;}
+.glossary-sub{font-size:13px;color:var(--ink3);font-weight:300;line-height:1.7;max-width:520px;}
+.glossary-search-wrap{position:relative;max-width:420px;margin-top:18px;}
+.glossary-search{width:100%;padding:12px 16px 12px 44px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+.glossary-search:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(192,120,48,0.1);}
+.glossary-search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink4);font-size:15px;pointer-events:none;}
+.glossary-cats{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:24px;}
+.gcat{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;color:var(--ink3);cursor:pointer;transition:all 0.15s;}
+.gcat:hover{border-color:var(--moss);color:var(--moss);}
+.gcat.active{background:var(--forest);color:#f6f3ee;border-color:var(--forest);}
+[data-theme="dark"] .gcat.active{background:var(--moss);color:#0e1512;border-color:var(--moss);}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.gcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;animation:fadeUp 0.3s ease both;transition:box-shadow 0.2s,border-color 0.2s;}
+.gcard:hover{box-shadow:var(--shadow);border-color:var(--border2);}
+.gcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.gcard-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--ink);line-height:1.2;}
+.gcard-type{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 8px;border-radius:3px;border:1px solid var(--border);color:var(--ink4);white-space:nowrap;}
+.gcard-what{font-size:12px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:12px;}
+.gcard-skin{display:flex;flex-direction:column;gap:5px;}
+.gcard-skin-row{display:flex;align-items:flex-start;gap:8px;font-size:10.5px;font-family:'DM Mono',monospace;}
+.gcard-skin-label{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+.good-label{background:var(--mint-pale);color:var(--moss);border:1px solid var(--mint);}
+[data-theme="dark"] .good-label{background:var(--mint);color:var(--forest2);}
+.bad-label{background:var(--amber-pale);color:var(--amber);border:1px solid rgba(192,120,48,0.2);}
+.gcard-skin-text{color:var(--ink3);line-height:1.5;}
+.gcard-note{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:10px;color:var(--ink4);font-family:'DM Mono',monospace;letter-spacing:0.03em;line-height:1.6;}
+.glossary-empty{text-align:center;padding:70px 24px;}
+.glossary-empty-glyph{font-family:'Cormorant Garamond',serif;font-size:40px;color:var(--border2);margin-bottom:12px;}
+.glossary-empty-text{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--ink3);}
 
-/* ── BOT OVERLAY ── */
-.bot-overlay{
-  position:fixed;inset:0;
-  background:rgba(10,20,14,0.7);
-  backdrop-filter:blur(10px);
-  z-index:200;display:none;
-  align-items:flex-end;justify-content:center;
-}
+/* ── ROUTINE BUILDER ── */
+.routine-wrap{max-width:760px;margin:0 auto;padding:36px 32px 80px;}
+.routine-header{margin-bottom:32px;}
+.routine-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:500;color:var(--ink);margin-bottom:8px;}
+.routine-sub{font-size:13px;color:var(--ink3);font-weight:300;line-height:1.7;max-width:460px;}
+.routine-step{margin-bottom:28px;}
+.routine-step-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;}
+.routine-step-num{display:inline-flex;width:20px;height:20px;background:var(--forest);color:#f6f3ee;border-radius:50%;font-size:9px;align-items:center;justify-content:center;font-weight:600;margin-right:8px;flex-shrink:0;vertical-align:middle;}
+[data-theme="dark"] .routine-step-num{background:var(--moss);color:#0e1512;}
+
+/* Skin type selector */
+.skin-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:6px;}
+.skin-card{border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;background:var(--surface);cursor:pointer;transition:all 0.2s;text-align:left;}
+.skin-card:hover{border-color:var(--moss);transform:translateY(-1px);}
+.skin-card.selected{border-color:var(--forest);background:var(--mint-pale);box-shadow:0 0 0 2px rgba(47,96,80,0.15);}
+[data-theme="dark"] .skin-card.selected{border-color:var(--moss);background:var(--mint);}
+.skin-card-emoji{font-size:22px;margin-bottom:7px;display:block;}
+.skin-card-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.skin-card-note{font-size:9.5px;color:var(--ink4);font-family:'DM Mono',monospace;letter-spacing:0.04em;line-height:1.4;}
+
+/* Time selector */
+.time-selector{display:flex;gap:10px;}
+.time-card{border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 20px;background:var(--surface);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:10px;}
+.time-card:hover{border-color:var(--moss);}
+.time-card.selected{border-color:var(--forest);background:var(--mint-pale);}
+[data-theme="dark"] .time-card.selected{border-color:var(--moss);background:var(--mint);}
+.time-card-label{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--ink);}
+.time-card-icon{font-size:18px;}
+
+/* Build button */
+.build-btn{display:inline-flex;align-items:center;gap:10px;background:var(--forest);color:#f6f3ee;border:none;border-radius:var(--radius-sm);padding:14px 28px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.06em;cursor:pointer;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 3px 12px rgba(27,58,47,0.3);}
+[data-theme="dark"] .build-btn{background:var(--moss);color:#0e1512;box-shadow:0 3px 12px rgba(0,0,0,0.3);}
+.build-btn:hover{background:var(--forest2);transform:translateY(-1px);box-shadow:0 5px 18px rgba(27,58,47,0.4);}
+[data-theme="dark"] .build-btn:hover{background:var(--forest2);}
+.build-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
+
+/* Routine result */
+.routine-result{margin-top:32px;animation:fadeUp 0.4s ease both;}
+.routine-result-header{background:var(--forest);border-radius:var(--radius) var(--radius) 0 0;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;}
+[data-theme="dark"] .routine-result-header{background:var(--bg2);border:1px solid var(--border);border-bottom:none;}
+.routine-result-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:#f6f3ee;font-weight:500;}
+[data-theme="dark"] .routine-result-title{color:var(--ink);}
+.routine-result-badge{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;padding:4px 11px;border-radius:20px;background:rgba(192,120,48,0.2);color:var(--amber-light);border:1px solid rgba(192,120,48,0.3);}
+.routine-steps-list{background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);}
+.routine-step-item{padding:18px 24px;display:flex;gap:16px;align-items:flex-start;border-bottom:1px solid var(--border);}
+.routine-step-item:last-child{border-bottom:none;}
+.rsi-num{width:28px;height:28px;border-radius:50%;background:var(--mint-pale);border:1px solid var(--mint);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--moss);flex-shrink:0;margin-top:2px;}
+[data-theme="dark"] .rsi-num{background:var(--mint);border-color:var(--border2);color:var(--forest2);}
+.rsi-content{flex:1;min-width:0;}
+.rsi-step-name{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink4);margin-bottom:3px;}
+.rsi-product-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--ink);margin-bottom:3px;}
+.rsi-product-brand{font-size:10px;color:var(--forest3);font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
+[data-theme="dark"] .rsi-product-brand{color:var(--moss);}
+.rsi-tip{font-size:11.5px;color:var(--ink3);font-weight:300;line-height:1.6;}
+.rsi-price{margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.rsi-best-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--ink);}
+.rsi-best-where{font-size:9.5px;color:var(--moss);font-family:'DM Mono',monospace;letter-spacing:0.06em;}
+[data-theme="dark"] .rsi-best-where{color:var(--forest2);}
+.rsi-search-btn{font-size:10px;padding:5px 12px;border-radius:4px;background:transparent;border:1px solid var(--border);color:var(--ink3);cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:all 0.15s;}
+.rsi-search-btn:hover{border-color:var(--amber);color:var(--amber);}
+.routine-total{padding:16px 24px;background:var(--surface2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+[data-theme="dark"] .routine-total{background:var(--bg);}
+.routine-total-label{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);}
+.routine-total-price{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--ink);}
+.routine-total-note{font-size:10px;color:var(--ink4);font-family:'DM Mono',monospace;letter-spacing:0.04em;}
+
+/* ── BOT ── */
+.bot-overlay{position:fixed;inset:0;background:rgba(10,20,14,0.7);backdrop-filter:blur(10px);z-index:200;display:none;align-items:flex-end;justify-content:center;}
 .bot-overlay.open{display:flex;}
-
-.bot-panel{
-  width:100%;max-width:500px;
-  height:74vh;
-  background:var(--forest);
-  border-radius:20px 20px 0 0;
-  display:flex;flex-direction:column;
-  animation:slideUp 0.35s cubic-bezier(0.34,1.56,0.64,1);
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,0.07);
-  border-bottom:none;
-}
-[data-theme="dark"] .bot-panel{
-  background:var(--bg2);
-  border-color:var(--border);
-}
+.bot-panel{width:100%;max-width:500px;height:74vh;background:var(--forest);border-radius:20px 20px 0 0;display:flex;flex-direction:column;animation:slideUp 0.35s cubic-bezier(0.34,1.56,0.64,1);overflow:hidden;border:1px solid rgba(255,255,255,0.07);border-bottom:none;}
+[data-theme="dark"] .bot-panel{background:var(--bg2);border-color:var(--border);}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-
-.bot-head{
-  padding:18px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.07);
-  display:flex;justify-content:space-between;align-items:center;
-}
+.bot-head{padding:18px 20px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;align-items:center;}
 [data-theme="dark"] .bot-head{border-color:var(--border);}
 .bot-brand{display:flex;align-items:center;gap:12px;}
-.bot-avatar{
-  width:36px;height:36px;
-  background:var(--amber);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;
-  font-size:15px;color:#f6f3ee;font-style:italic;
-  box-shadow:0 2px 8px rgba(192,120,48,0.3);
-}
+.bot-avatar{width:36px;height:36px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:15px;color:#f6f3ee;font-style:italic;box-shadow:0 2px 8px rgba(192,120,48,0.3);}
 .bot-info-title{font-family:'Cormorant Garamond',serif;font-size:17px;color:#f6f3ee;font-weight:500;}
 [data-theme="dark"] .bot-info-title{color:var(--ink);}
-.bot-status{
-  font-size:8.5px;color:var(--moss-light);
-  font-family:'DM Mono',monospace;letter-spacing:0.12em;
-  display:flex;align-items:center;gap:5px;
-}
+.bot-status{font-size:8.5px;color:var(--moss-light);font-family:'DM Mono',monospace;letter-spacing:0.12em;display:flex;align-items:center;gap:5px;}
 .bot-status-dot{width:5px;height:5px;border-radius:50%;background:var(--moss-light);animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-.bot-close{
-  background:rgba(255,255,255,0.08);border:none;
-  color:rgba(200,230,218,0.6);
-  width:30px;height:30px;border-radius:50%;
-  cursor:pointer;font-size:18px;
-  display:flex;align-items:center;justify-content:center;
-  transition:background 0.15s;
-}
+.bot-close{background:rgba(255,255,255,0.08);border:none;color:rgba(200,230,218,0.6);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background 0.15s;}
 [data-theme="dark"] .bot-close{background:var(--bg3);color:var(--ink3);}
 .bot-close:hover{background:rgba(255,255,255,0.14);}
-
-.bot-msgs{
-  flex:1;overflow-y:auto;
-  padding:16px 18px;
-  display:flex;flex-direction:column;gap:12px;
-  scrollbar-width:thin;
-  scrollbar-color:rgba(255,255,255,0.1) transparent;
-}
+.bot-msgs{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent;}
 .bmsg{max-width:88%;}
 .bmsg.bot{align-self:flex-start;}
 .bmsg.user{align-self:flex-end;}
-.bmsg-bubble{
-  padding:11px 15px;
-  border-radius:14px;
-  font-size:13px;line-height:1.6;font-weight:300;
-}
-.bmsg.bot .bmsg-bubble{
-  background:rgba(255,255,255,0.08);
-  color:rgba(230,245,238,0.9);
-  border-radius:4px 14px 14px 14px;
-  border:1px solid rgba(255,255,255,0.06);
-}
-[data-theme="dark"] .bmsg.bot .bmsg-bubble{
-  background:var(--bg3);
-  color:var(--ink2);
-  border-color:var(--border);
-}
-.bmsg.user .bmsg-bubble{
-  background:var(--amber);
-  color:#f6f3ee;
-  border-radius:14px 4px 14px 14px;
-}
-.bmsg-time{
-  font-size:8.5px;color:rgba(200,230,218,0.35);
-  margin-top:4px;
-  font-family:'DM Mono',monospace;
-  padding-left:2px;
-}
+.bmsg-bubble{padding:11px 15px;border-radius:14px;font-size:13px;line-height:1.6;font-weight:300;}
+.bmsg.bot .bmsg-bubble{background:rgba(255,255,255,0.08);color:rgba(230,245,238,0.9);border-radius:4px 14px 14px 14px;border:1px solid rgba(255,255,255,0.06);}
+[data-theme="dark"] .bmsg.bot .bmsg-bubble{background:var(--bg3);color:var(--ink2);border-color:var(--border);}
+.bmsg.user .bmsg-bubble{background:var(--amber);color:#f6f3ee;border-radius:14px 4px 14px 14px;}
+.bmsg-time{font-size:8.5px;color:rgba(200,230,218,0.35);margin-top:4px;font-family:'DM Mono',monospace;padding-left:2px;}
 [data-theme="dark"] .bmsg-time{color:var(--ink4);}
 .bmsg.user .bmsg-time{text-align:right;}
-
 .bot-qr{display:flex;gap:7px;flex-wrap:wrap;padding:0 18px 12px;}
-.qr-btn{
-  font-size:10px;padding:6px 12px;border-radius:20px;
-  border:1px solid rgba(255,255,255,0.1);
-  color:rgba(200,230,218,0.7);
-  background:rgba(255,255,255,0.05);
-  cursor:pointer;font-family:'DM Sans',sans-serif;
-  transition:all 0.15s;
-}
-[data-theme="dark"] .qr-btn{
-  border-color:var(--border);color:var(--ink3);background:var(--bg3);
-}
+.qr-btn{font-size:10px;padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);color:rgba(200,230,218,0.7);background:rgba(255,255,255,0.05);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;}
+[data-theme="dark"] .qr-btn{border-color:var(--border);color:var(--ink3);background:var(--bg3);}
 .qr-btn:hover{border-color:var(--amber);color:var(--amber-light);}
-
-.bot-input-row{
-  padding:13px 16px;
-  border-top:1px solid rgba(255,255,255,0.07);
-  display:flex;gap:10px;
-}
+.bot-input-row{padding:13px 16px;border-top:1px solid rgba(255,255,255,0.07);display:flex;gap:10px;}
 [data-theme="dark"] .bot-input-row{border-color:var(--border);}
-.bot-input{
-  flex:1;
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:22px;
-  padding:10px 18px;
-  font-family:'DM Sans',sans-serif;font-size:13px;
-  color:#f6f3ee;outline:none;
-  transition:border-color 0.2s;
-}
-[data-theme="dark"] .bot-input{
-  background:var(--bg3);border-color:var(--border);color:var(--ink);
-}
+.bot-input{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:22px;padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:13px;color:#f6f3ee;outline:none;transition:border-color 0.2s;}
+[data-theme="dark"] .bot-input{background:var(--bg3);border-color:var(--border);color:var(--ink);}
 .bot-input::placeholder{color:rgba(200,230,218,0.3);}
 [data-theme="dark"] .bot-input::placeholder{color:var(--ink4);}
 .bot-input:focus{border-color:var(--amber);}
-.bot-send{
-  width:40px;height:40px;flex-shrink:0;
-  background:var(--amber);border:none;border-radius:50%;
-  color:#f6f3ee;cursor:pointer;font-size:17px;
-  display:flex;align-items:center;justify-content:center;
-  transition:background 0.2s,transform 0.15s;
-  box-shadow:0 2px 8px rgba(192,120,48,0.3);
-}
+.bot-send{width:40px;height:40px;flex-shrink:0;background:var(--amber);border:none;border-radius:50%;color:#f6f3ee;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:background 0.2s,transform 0.15s;box-shadow:0 2px 8px rgba(192,120,48,0.3);}
 .bot-send:hover{background:var(--amber-light);transform:scale(1.05);}
-
-/* ── TYPING INDICATOR ── */
 .typing-dots{display:flex;align-items:center;gap:4px;padding:4px 2px;}
-.typing-dots span{
-  width:6px;height:6px;border-radius:50%;
-  background:rgba(200,230,218,0.5);
-  animation:typingBounce 1.2s infinite ease;
-}
+.typing-dots span{width:6px;height:6px;border-radius:50%;background:rgba(200,230,218,0.5);animation:typingBounce 1.2s infinite ease;}
 [data-theme="dark"] .typing-dots span{background:var(--ink4);}
 .typing-dots span:nth-child(2){animation-delay:0.2s;}
 .typing-dots span:nth-child(3){animation-delay:0.4s;}
 @keyframes typingBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
 
-/* ── RESPONSIVE ── */
 @media(max-width:640px){
   .header{padding:0 18px;}
-  .brand-sub{display:none;}
+
   .hero{padding:44px 20px 44px;}
   .hero-title{font-size:32px;}
   .hero-body{font-size:13px;}
   .search-row{flex-direction:column;}
   .search-go{padding:14px;text-align:center;}
-  .filter-bar{padding:12px 18px;}
-  .pincode-bar{padding:10px 18px;}
-  .results-wrap{padding:20px 18px 60px;}
+  .filter-bar,.pincode-bar{padding:12px 18px;}
+  .results-wrap,.glossary-wrap,.routine-wrap{padding:20px 18px 60px;}
   .pcard-top{gap:12px;}
   .pcard-icon{width:56px;height:56px;font-size:22px;}
   .pcard-name{font-size:17px;}
   .platforms-grid{grid-template-columns:repeat(2,1fr);}
+  .glossary-grid{grid-template-columns:1fr;}
+  .skin-selector{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════ HEADER ═══════════════ -->
+<!-- HEADER -->
 <div class="header">
   <a class="brand" href="#">
-    <!-- Monogram: elegant T where the stem ends in a drop -->
     <svg class="monogram" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="21" cy="21" r="19.5" fill="none" stroke="rgba(192,148,74,0.4)" stroke-width="0.75"/>
-      <!-- T crossbar — thin, refined -->
       <line x1="10" y1="13.5" x2="32" y2="13.5" stroke="#c4944a" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- T stem -->
       <line x1="21" y1="13.5" x2="21" y2="26" stroke="#c4944a" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- Drop — the stem resolves into a single teardrop -->
       <path d="M21 26 C21 26 17.5 30 17.5 32.2 C17.5 34.3 19.07 36 21 36 C22.93 36 24.5 34.3 24.5 32.2 C24.5 30 21 26 21 26Z" fill="#c4944a" opacity="0.9"/>
-      <!-- Subtle inner highlight on drop -->
       <ellipse cx="19.8" cy="31.5" rx="0.9" ry="1.4" fill="rgba(255,255,255,0.22)" transform="rotate(-15 19.8 31.5)"/>
     </svg>
     <div class="brand-text">
@@ -876,96 +420,138 @@ body::before{
   </div>
 </div>
 
-<!-- ═══════════════ HERO ═══════════════ -->
-<div class="hero">
-  <!-- Decorative lines (right side) -->
-  <div class="hero-lines">
-    <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
-      <line x1="50" y1="0" x2="50" y2="500" stroke="white" stroke-width="0.5"/>
-      <line x1="120" y1="0" x2="120" y2="500" stroke="white" stroke-width="0.5"/>
-      <line x1="200" y1="0" x2="200" y2="500" stroke="white" stroke-width="0.5"/>
-      <line x1="290" y1="0" x2="290" y2="500" stroke="white" stroke-width="0.5"/>
-      <line x1="0" y1="80" x2="400" y2="80" stroke="white" stroke-width="0.5"/>
-      <line x1="0" y1="180" x2="400" y2="180" stroke="white" stroke-width="0.5"/>
-      <line x1="0" y1="290" x2="400" y2="290" stroke="white" stroke-width="0.5"/>
-    </svg>
-  </div>
+<!-- MAIN NAV BAR -->
+<div class="main-nav">
+  <button class="main-nav-tab active" id="navCompare" onclick="showView('compare')">
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="1" y="3" width="4" height="8" rx="1"/><rect x="9" y="1" width="4" height="10" rx="1"/><rect x="5" y="5" width="4" height="6" rx="1"/></svg>
+    Compare
+  </button>
+  <button class="main-nav-tab" id="navGlossary" onclick="showView('glossary')">
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 2h7a1 1 0 0 1 1 1v9l-4-2-4 2V3a1 1 0 0 1 1-1z"/><line x1="5" y1="6" x2="8" y2="6"/></svg>
+    Glossary
+  </button>
+  <button class="main-nav-tab" id="navRoutine" onclick="showView('routine')">
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><path d="M7 4v3l2 1"/></svg>
+    Build Routine
+  </button>
+</div>
 
-  <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-line"></div>
-      Ingredient-first · Price-honest · Skin-smart
+
+
+<!-- ═══ VIEW: COMPARE ═══ -->
+<div class="view active" id="view-compare">
+  <div class="hero">
+    <div class="hero-lines">
+      <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+        <line x1="50" y1="0" x2="50" y2="500" stroke="white" stroke-width="0.5"/>
+        <line x1="120" y1="0" x2="120" y2="500" stroke="white" stroke-width="0.5"/>
+        <line x1="200" y1="0" x2="200" y2="500" stroke="white" stroke-width="0.5"/>
+        <line x1="290" y1="0" x2="290" y2="500" stroke="white" stroke-width="0.5"/>
+        <line x1="0" y1="80" x2="400" y2="80" stroke="white" stroke-width="0.5"/>
+        <line x1="0" y1="180" x2="400" y2="180" stroke="white" stroke-width="0.5"/>
+        <line x1="0" y1="290" x2="400" y2="290" stroke="white" stroke-width="0.5"/>
+      </svg>
     </div>
-
-    <div class="hero-title">
-      Your skin absorbs<br>everything you put on it.<br>
-      <em>Does it deserve better?</em>
-    </div>
-
-    <div class="hero-body">
-      Most people spend 20+ minutes hopping between apps just to buy one product they're not even sure works for them.
-      Twacha cuts through the noise — real ingredients decoded, real prices compared, zero brand bias.
-    </div>
-
-    <!-- Cognitive anchor — scarcity of attention -->
-    <div class="stat-hook">
-      <strong>5</strong> platforms · <strong>1</strong> search · <strong>0</strong> paid placements
-    </div>
-
-    <div class="search-row">
-      <div class="search-wrap">
-        <span class="search-icon-wrap">◎</span>
-        <input class="search-input" id="searchInput"
-          placeholder="Search product, brand, or ingredient…"
-          onkeydown="if(event.key==='Enter')doSearch()"/>
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><div class="hero-eyebrow-line"></div>Ingredient-first · Price-honest · Skin-smart</div>
+      <div class="hero-title">Your skin absorbs<br>everything you put on it.<br><em>Does it deserve better?</em></div>
+      <div class="hero-body">Most people spend 20+ minutes hopping between apps just to buy one product they're not even sure works for them. Twacha cuts through the noise — real ingredients decoded, real prices compared, zero brand bias.</div>
+      <div class="stat-hook"><strong>5</strong> platforms · <strong>1</strong> search · <strong>0</strong> paid placements</div>
+      <div class="search-row">
+        <div class="search-wrap">
+          <span class="search-icon-wrap">◎</span>
+          <input class="search-input" id="searchInput" placeholder="Search product, brand, or ingredient…" onkeydown="if(event.key==='Enter')doSearch()"/>
+        </div>
+        <button class="search-go" onclick="doSearch()">Compare →</button>
       </div>
-      <button class="search-go" onclick="doSearch()">Compare →</button>
-    </div>
-
-    <div class="trust-strip">
-      <div class="trust-item"><div class="trust-check">✓</div>Real ingredient lists</div>
-      <div class="trust-item"><div class="trust-check">✓</div>No sponsored rankings</div>
-      <div class="trust-item"><div class="trust-check">✓</div>Dermatologist-verified categories</div>
+      <div class="trust-strip">
+        <div class="trust-item"><div class="trust-check">✓</div>Real ingredient lists</div>
+        <div class="trust-item"><div class="trust-check">✓</div>No sponsored rankings</div>
+        <div class="trust-item"><div class="trust-check">✓</div>Dermatologist-verified categories</div>
+      </div>
     </div>
   </div>
+  <div class="filter-bar">
+    <div class="filter-label">Your skin type</div>
+    <div class="chips">
+      <div class="chip" onclick="filterSkin(event,'oily')">Oily</div>
+      <div class="chip" onclick="filterSkin(event,'dry')">Dry</div>
+      <div class="chip" onclick="filterSkin(event,'combination')">Combination</div>
+      <div class="chip" onclick="filterSkin(event,'sensitive')">Sensitive</div>
+      <div class="chip" onclick="filterSkin(event,'acne')">Acne-prone</div>
+      <div class="chip active" onclick="filterSkin(event,'all')">All types</div>
+    </div>
+  </div>
+  <div class="pincode-bar">
+    <div class="pincode-label">📍 Delivery to</div>
+    <div class="pincode-input-wrap">
+      <input class="pincode-input" id="pincodeInput" maxlength="6" placeholder="Enter pincode" oninput="this.value=this.value.replace(/\D/g,'')" onkeydown="if(event.key==='Enter')checkPincode()"/>
+      <button class="pincode-btn" onclick="checkPincode()">Check</button>
+    </div>
+    <div class="pincode-status" id="pincodeStatus">Enter your pincode to see accurate delivery estimates</div>
+  </div>
+  <div id="suggestedSection" style="display:none;"></div>
+  <div class="results-wrap" id="resultsWrap"></div>
 </div>
 
-<!-- ═══════════════ SKIN FILTER BAR ═══════════════ -->
-<div class="filter-bar">
-  <div class="filter-label">Your skin type</div>
-  <div class="chips">
-    <div class="chip" onclick="filterSkin(event,'oily')">Oily</div>
-    <div class="chip" onclick="filterSkin(event,'dry')">Dry</div>
-    <div class="chip" onclick="filterSkin(event,'combination')">Combination</div>
-    <div class="chip" onclick="filterSkin(event,'sensitive')">Sensitive</div>
-    <div class="chip" onclick="filterSkin(event,'acne')">Acne-prone</div>
-    <div class="chip active" onclick="filterSkin(event,'all')">All types</div>
+<!-- ═══ VIEW: GLOSSARY ═══ -->
+<div class="view" id="view-glossary">
+  <div class="glossary-wrap">
+    <div class="glossary-header">
+      <div class="glossary-title">Ingredient Glossary</div>
+      <div class="glossary-sub">Plain-language explanations of what's actually in your skincare — what each ingredient does, and which skin types it helps or harms.</div>
+      <div class="glossary-search-wrap">
+        <span class="glossary-search-icon">◎</span>
+        <input class="glossary-search" id="glossarySearch" placeholder="Search ingredients…" oninput="filterGlossary()"/>
+      </div>
+    </div>
+    <div class="glossary-cats" id="glossaryCats"></div>
+    <div class="glossary-grid" id="glossaryGrid"></div>
   </div>
 </div>
 
-<!-- ═══════════════ PINCODE BAR ═══════════════ -->
-<div class="pincode-bar">
-  <div class="pincode-label">📍 Delivery to</div>
-  <div class="pincode-input-wrap">
-    <input class="pincode-input" id="pincodeInput" maxlength="6"
-      placeholder="Enter pincode"
-      oninput="this.value=this.value.replace(/\D/g,'')"
-      onkeydown="if(event.key==='Enter')checkPincode()"/>
-    <button class="pincode-btn" onclick="checkPincode()">Check</button>
+<!-- ═══ VIEW: ROUTINE BUILDER ═══ -->
+<div class="view" id="view-routine">
+  <div class="routine-wrap">
+    <div class="routine-header">
+      <div class="routine-title">Build Your Routine</div>
+      <div class="routine-sub">Tell us your skin type and whether you're building a morning or evening routine. We'll recommend a 4-step regimen from our catalog — with prices across all platforms.</div>
+    </div>
+
+    <div class="routine-step">
+      <div class="routine-step-label"><span class="routine-step-num">1</span>What's your skin type?</div>
+      <div class="skin-selector" id="skinSelector">
+        <div class="skin-card" onclick="selectSkin('oily',this)"><span class="skin-card-emoji">💦</span><div class="skin-card-name">Oily</div><div class="skin-card-note">Shine by noon, enlarged pores</div></div>
+        <div class="skin-card" onclick="selectSkin('dry',this)"><span class="skin-card-emoji">🌵</span><div class="skin-card-name">Dry</div><div class="skin-card-note">Tight, flaky, needs moisture</div></div>
+        <div class="skin-card" onclick="selectSkin('combination',this)"><span class="skin-card-emoji">⚖️</span><div class="skin-card-name">Combination</div><div class="skin-card-note">Oily T-zone, dry cheeks</div></div>
+        <div class="skin-card" onclick="selectSkin('sensitive',this)"><span class="skin-card-emoji">🌸</span><div class="skin-card-name">Sensitive</div><div class="skin-card-note">Reacts easily, prone to redness</div></div>
+        <div class="skin-card" onclick="selectSkin('acne',this)"><span class="skin-card-emoji">🎯</span><div class="skin-card-name">Acne-prone</div><div class="skin-card-note">Frequent breakouts, blackheads</div></div>
+      </div>
+    </div>
+
+    <div class="routine-step">
+      <div class="routine-step-label"><span class="routine-step-num">2</span>Morning or evening?</div>
+      <div class="time-selector">
+        <div class="time-card" onclick="selectTime('morning',this)">
+          <div class="time-card-icon">☀️</div>
+          <div class="time-card-label">Morning</div>
+        </div>
+        <div class="time-card" onclick="selectTime('evening',this)">
+          <div class="time-card-icon">🌙</div>
+          <div class="time-card-label">Evening</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="build-btn" id="buildBtn" onclick="buildRoutine()" disabled>
+      <span>Build my routine</span> <span>→</span>
+    </button>
+
+    <div id="routineResult"></div>
   </div>
-  <div class="pincode-status" id="pincodeStatus">Enter your pincode to see accurate delivery estimates</div>
 </div>
 
-<!-- ═══════════════ RESULTS ═══════════════ -->
-<div class="results-wrap" id="resultsWrap">
-  <div class="empty">
-    <div class="empty-glyph">✦</div>
-    <div class="empty-title">Search any product or ingredient</div>
-    <div class="empty-sub">or select your skin type above to explore</div>
-  </div>
-</div>
-
-<!-- ═══════════════ BOT ═══════════════ -->
+<!-- BOT -->
 <div class="bot-overlay" id="botOverlay" onclick="closeBotBg(event)">
   <div class="bot-panel">
     <div class="bot-head">
@@ -973,36 +559,25 @@ body::before{
         <div class="bot-avatar">T</div>
         <div>
           <div class="bot-info-title">Twacha Guide</div>
-          <div class="bot-status">
-            <div class="bot-status-dot"></div>
-            Online · No bias, no brand deals
-          </div>
+          <div class="bot-status"><div class="bot-status-dot"></div>Online · No bias, no brand deals</div>
         </div>
       </div>
       <button class="bot-close" onclick="closeBot()">×</button>
     </div>
-
     <div class="bot-msgs" id="botMsgs">
       <div class="bmsg bot">
-        <div class="bmsg-bubble">
-          Hello. I'm your skincare guide — not a sponsored recommendation engine, not a chatbot with a sales target.<br><br>
-          Ask me what actually works for your skin type, how to read an ingredient list, which actives to never mix, or where to find the best price today. I'll give you the honest answer. 🌿
-        </div>
+        <div class="bmsg-bubble">Hello. I'm your skincare guide — not a sponsored recommendation engine, not a chatbot with a sales target.<br><br>Ask me what actually works for your skin type, how to read an ingredient list, which actives to never mix, or where to find the best price today. I'll give you the honest answer. 🌿</div>
         <div class="bmsg-time">now</div>
       </div>
     </div>
-
     <div class="bot-qr" id="botQR">
       <div class="qr-btn" onclick="sendQ('What should I use for oily skin?')">Oily skin</div>
       <div class="qr-btn" onclick="sendQ('Which sunscreen is best?')">Sunscreen</div>
       <div class="qr-btn" onclick="sendQ('How do I build a routine?')">Routine</div>
       <div class="qr-btn" onclick="sendQ('What ingredients should I avoid?')">Avoid list</div>
     </div>
-
     <div class="bot-input-row">
-      <input class="bot-input" id="botInput"
-        placeholder="Ask anything about your skin…"
-        onkeydown="if(event.key==='Enter')sendMsg()"/>
+      <input class="bot-input" id="botInput" placeholder="Ask anything about your skin…" onkeydown="if(event.key==='Enter')sendMsg()"/>
       <button class="bot-send" onclick="sendMsg()">↑</button>
     </div>
   </div>
@@ -1017,204 +592,90 @@ function toggleTheme(){
   document.getElementById('themeThumb').textContent=isDark?'☀':'☽';
 }
 
+/* ── VIEW SWITCHING ── */
+function showView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  document.querySelectorAll('.main-nav-tab').forEach(t=>t.classList.remove('active'));
+  const ids={compare:'navCompare',glossary:'navGlossary',routine:'navRoutine'};
+  document.getElementById(ids[name]).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
 /* ── PINCODE ── */
 let userPincode=null;
-const deliveryMap={
-  '110':0,'400':0,'560':0,'600':0,'700':0,'500':0,'411':0, // metros = same/next day
-};
 function checkPincode(){
   const pin=document.getElementById('pincodeInput').value.trim();
   const status=document.getElementById('pincodeStatus');
   if(pin.length!==6){status.textContent='Please enter a valid 6-digit pincode.';status.className='pincode-status';return;}
   userPincode=pin;
-  const prefix=pin.substring(0,3);
-  const isMetro=deliveryMap[prefix]!==undefined;
   status.className='pincode-status set';
   status.textContent=`✓ Pincode ${pin} saved — delivery estimates updated`;
-  // re-render if products are showing
-  const cur=currentList;
-  if(cur&&cur.length)renderProducts(cur);
+  if(currentList&&currentList.length)renderProducts(currentList);
 }
-function getDelivery(plat,rawDays){
+function getDeliveryText(platName){
   if(!userPincode)return null;
   const prefix=userPincode.substring(0,3);
-  const isMetro=deliveryMap[prefix]!==undefined;
-  if(plat==='Blinkit')return isMetro?'~10 min':'1–2 hours';
-  if(plat==='Amazon')return isMetro?'Today/Tomorrow':'2–3 days';
-  if(plat==='Nykaa')return isMetro?'1–2 days':'3–5 days';
-  if(plat==='Myntra')return isMetro?'2–3 days':'4–6 days';
-  if(plat==='Flipkart')return isMetro?'1–2 days':'3–5 days';
-  return rawDays;
-}
-
-/* ── DATA ── */
-const products=[
-  {id:1,emoji:'☀️',brand:'Minimalist',name:'Sunscreen SPF 50 PA++++',
-   desc:'A mineral-chemical hybrid engineered for the Indian climate. Matte finish, no white cast — designed for the humidity your skin actually lives in.',
-   skins:['all','oily','combination','acne'],category:'sunscreen',
-   ingredients:['Zinc Oxide 10%','Octinoxate','Niacinamide','Glycerin'],starIng:['Zinc Oxide 10%','Niacinamide'],
-   ratings:{Nykaa:4.4,Amazon:4.3,Myntra:4.2},
-   platforms:[{name:'Nykaa',price:349,mrp:449,offer:'Free mini SPF on orders ₹499+'},{name:'Amazon',price:319,mrp:449,offer:null},{name:'Myntra',price:369,mrp:449,offer:'10% cashback HDFC'},{name:'Blinkit',price:339,mrp:449,offer:null},{name:'Flipkart',price:329,mrp:449,offer:null}]},
-  {id:2,emoji:'🌊',brand:'Dot & Key',name:'Waterlight Gel Sunscreen SPF 50',
-   desc:'Ultra-lightweight water-gel texture with hyaluronic acid. Zero greasiness — built for the days your skin already feels like it\'s sweating.',
-   skins:['oily','combination','all'],category:'sunscreen',
-   ingredients:['SPF 50 PA++++','Hyaluronic Acid','Watermelon Extract','Vitamin E'],starIng:['SPF 50 PA++++','Hyaluronic Acid'],
-   ratings:{Nykaa:4.5,Amazon:4.3,Myntra:4.4},
-   platforms:[{name:'Nykaa',price:499,mrp:649,offer:'Buy 2 get 15% off'},{name:'Amazon',price:449,mrp:649,offer:null},{name:'Myntra',price:529,mrp:649,offer:null},{name:'Blinkit',price:479,mrp:649,offer:null},{name:'Flipkart',price:459,mrp:649,offer:'5% supercoins'}]},
-  {id:3,emoji:'🧴',brand:'Neutrogena',name:'Ultra Sheer SPF 50+',
-   desc:'Helioplex technology. Dermatologist-recommended. Broad-spectrum UVA/UVB — the one that quietly became a standard in clinics across the country.',
-   skins:['all','sensitive','dry'],category:'sunscreen',
-   ingredients:['Avobenzone','Homosalate','Octisalate','Helioplex'],starIng:['Helioplex','Avobenzone'],
-   ratings:{Nykaa:4.3,Amazon:4.4,Myntra:4.2},
-   platforms:[{name:'Nykaa',price:699,mrp:899,offer:null},{name:'Amazon',price:649,mrp:899,offer:'Subscribe & save 5%'},{name:'Myntra',price:729,mrp:899,offer:null},{name:'Blinkit',price:679,mrp:899,offer:null},{name:'Flipkart',price:659,mrp:899,offer:null}]},
-  {id:4,emoji:'✨',brand:'Lakmé',name:'Sun Expert SPF 50 Tinted',
-   desc:'Sunscreen that earns a second job. Light tint, even coverage, Vitamin C — one fewer product on your shelf, one more reason to actually apply SPF.',
-   skins:['all','combination'],category:'sunscreen',
-   ingredients:['SPF 50','Vitamin C','Titanium Dioxide','Iron Oxides'],starIng:['Vitamin C','Titanium Dioxide'],
-   ratings:{Nykaa:4.1,Amazon:4.0,Myntra:4.2},
-   platforms:[{name:'Nykaa',price:299,mrp:399,offer:null},{name:'Amazon',price:279,mrp:399,offer:null},{name:'Myntra',price:319,mrp:399,offer:'15% off first order'},{name:'Blinkit',price:289,mrp:399,offer:null},{name:'Flipkart',price:284,mrp:399,offer:null}]},
-  {id:5,emoji:'🌿',brand:'Re Aish',name:'Dewy Sunscreen SPF 50 PA++++',
-   desc:'Ceramides and peptides in an SPF. It repairs the barrier while it protects it. For skin that feels tight after sunscreen — this one doesn\'t tighten.',
-   skins:['dry','sensitive','combination'],category:'sunscreen',
-   ingredients:['SPF 50 PA++++','Ceramides','Peptides','Squalane'],starIng:['Ceramides','Peptides'],
-   ratings:{Nykaa:4.6,Amazon:4.4,Myntra:4.5},
-   platforms:[{name:'Nykaa',price:849,mrp:999,offer:'Free shipping above ₹499'},{name:'Amazon',price:799,mrp:999,offer:null},{name:'Myntra',price:879,mrp:999,offer:null},{name:'Blinkit',price:829,mrp:999,offer:null},{name:'Flipkart',price:809,mrp:999,offer:null}]},
-  {id:6,emoji:'🫧',brand:'Minimalist',name:'Salicylic Acid 2% Face Wash',
-   desc:'A BHA cleanser that goes inside the pore — not just over it. Clears blackheads, controls oil, doesn\'t leave skin feeling stripped. Gentle enough for daily use.',
-   skins:['oily','acne','combination'],category:'face wash',
-   ingredients:['Salicylic Acid 2%','Niacinamide','Zinc PCA','Panthenol'],starIng:['Salicylic Acid 2%','Niacinamide'],
-   ratings:{Nykaa:4.3,Amazon:4.1,Myntra:4.2},
-   platforms:[{name:'Nykaa',price:299,mrp:399,offer:'Free face mask on orders ₹499+'},{name:'Amazon',price:269,mrp:399,offer:null},{name:'Myntra',price:319,mrp:399,offer:'10% cashback HDFC'},{name:'Blinkit',price:289,mrp:399,offer:null},{name:'Flipkart',price:279,mrp:399,offer:'Extra 5% Axis card'}]},
-  {id:7,emoji:'💧',brand:'CeraVe',name:'Hydrating Facial Cleanser',
-   desc:'Doesn\'t foam. Doesn\'t strip. Three ceramides and hyaluronic acid — so skin feels exactly as it should after a wash: clean, not tight, not squeaky, not confused.',
-   skins:['dry','sensitive','all'],category:'face wash',
-   ingredients:['Ceramides','Hyaluronic Acid','Niacinamide','Glycerin'],starIng:['Ceramides','Hyaluronic Acid'],
-   ratings:{Nykaa:4.6,Amazon:4.5,Myntra:4.4},
-   platforms:[{name:'Nykaa',price:899,mrp:1099,offer:'Free mini moisturiser'},{name:'Amazon',price:849,mrp:1099,offer:null},{name:'Myntra',price:949,mrp:1099,offer:null},{name:'Blinkit',price:919,mrp:1099,offer:null},{name:'Flipkart',price:869,mrp:1099,offer:null}]},
-  {id:8,emoji:'🌊',brand:'Neutrogena',name:'Oil-Free Acne Wash',
-   desc:'Clinically proven. The 2% salicylic acid works while you wash. Non-comedogenic — nothing inside this formula is going to make a bad situation worse.',
-   skins:['oily','acne'],category:'face wash',
-   ingredients:['Salicylic Acid 2%','Glycerin','Aloe Vera','Green Tea Extract'],starIng:['Salicylic Acid 2%'],
-   ratings:{Nykaa:4.1,Amazon:4.2,Myntra:4.0},
-   platforms:[{name:'Nykaa',price:749,mrp:899,offer:null},{name:'Amazon',price:699,mrp:899,offer:null},{name:'Myntra',price:779,mrp:899,offer:null},{name:'Blinkit',price:729,mrp:899,offer:null},{name:'Flipkart',price:709,mrp:899,offer:null}]},
-  {id:9,emoji:'✨',brand:'Dot & Key',name:'Niacinamide 10% + Zinc Serum',
-   desc:'10% niacinamide visibly reduces pores in 4 weeks. Zinc controls sebum at the source. One of the most well-tolerated serums for oily skin — no purging, no drama.',
-   skins:['oily','combination','acne'],category:'serum',
-   ingredients:['Niacinamide 10%','Zinc PCA 1%','Hyaluronic Acid','Panthenol'],starIng:['Niacinamide 10%','Zinc PCA 1%'],
-   ratings:{Nykaa:4.5,Amazon:4.3,Myntra:4.4},
-   platforms:[{name:'Nykaa',price:549,mrp:699,offer:'Buy 2 get 15% off'},{name:'Amazon',price:499,mrp:699,offer:null},{name:'Myntra',price:579,mrp:699,offer:null},{name:'Blinkit',price:529,mrp:699,offer:null},{name:'Flipkart',price:519,mrp:699,offer:'5% supercoins'}]},
-  {id:10,emoji:'🌙',brand:'Plum',name:'Vitamin C Serum 15%',
-   desc:'Stable Vitamin C at 15% — strong enough to work, measured enough not to sting. Fades dark spots in 6–8 weeks of consistent use. A morning ingredient.',
-   skins:['all','combination','dry'],category:'serum',
-   ingredients:['Vitamin C 15%','Ferulic Acid','Hyaluronic Acid','Vitamin E'],starIng:['Vitamin C 15%','Ferulic Acid'],
-   ratings:{Nykaa:4.2,Amazon:4.0,Myntra:4.1},
-   platforms:[{name:'Nykaa',price:649,mrp:799,offer:null},{name:'Amazon',price:599,mrp:799,offer:'Subscribe & save 5%'},{name:'Myntra',price:679,mrp:799,offer:null},{name:'Blinkit',price:669,mrp:799,offer:null},{name:'Flipkart',price:619,mrp:799,offer:null}]},
-  {id:11,emoji:'💎',brand:'Minimalist',name:'Retinol 0.3% + Q10 Serum',
-   desc:'The right entry point. 0.3% works — 1% is unnecessary and irritating. Use at night, expect results in 8–12 weeks, not 8 days. Patience is the active ingredient.',
-   skins:['all','dry','combination'],category:'serum',
-   ingredients:['Retinol 0.3%','Coenzyme Q10','Squalane','Peptides'],starIng:['Retinol 0.3%','Coenzyme Q10'],
-   ratings:{Nykaa:4.4,Amazon:4.2,Myntra:4.3},
-   platforms:[{name:'Nykaa',price:589,mrp:749,offer:null},{name:'Amazon',price:549,mrp:749,offer:null},{name:'Myntra',price:619,mrp:749,offer:null},{name:'Blinkit',price:569,mrp:749,offer:null},{name:'Flipkart',price:559,mrp:749,offer:null}]},
-  {id:12,emoji:'🫙',brand:'CeraVe',name:'Moisturising Cream',
-   desc:'The one dermatologists actually use. Three ceramides. Hyaluronic acid. MVE technology that releases moisture for 24 hours. For every skin type — including the ones that\'ve tried everything.',
-   skins:['dry','sensitive','all'],category:'moisturiser',
-   ingredients:['Ceramides','Hyaluronic Acid','Glycerin','Petrolatum'],starIng:['Ceramides','Hyaluronic Acid'],
-   ratings:{Nykaa:4.7,Amazon:4.6,Myntra:4.5},
-   platforms:[{name:'Nykaa',price:999,mrp:1299,offer:'Free travel size with purchase'},{name:'Amazon',price:949,mrp:1299,offer:null},{name:'Myntra',price:1049,mrp:1299,offer:null},{name:'Blinkit',price:979,mrp:1299,offer:null},{name:'Flipkart',price:959,mrp:1299,offer:null}]},
-  {id:13,emoji:'🌸',brand:'Neutrogena',name:'Oil-Free Moisture SPF 35',
-   desc:'Moisturiser and sunscreen folded into one step. Lightweight, non-comedogenic, and quietly effective at a job that two products used to split between them.',
-   skins:['oily','combination','acne'],category:'moisturiser',
-   ingredients:['SPF 35','Glycerin','Dimethicone','Panthenol'],starIng:['SPF 35','Glycerin'],
-   ratings:{Nykaa:4.2,Amazon:4.1,Myntra:4.0},
-   platforms:[{name:'Nykaa',price:799,mrp:999,offer:null},{name:'Amazon',price:749,mrp:999,offer:null},{name:'Myntra',price:829,mrp:999,offer:null},{name:'Blinkit',price:769,mrp:999,offer:null},{name:'Flipkart',price:759,mrp:999,offer:null}]},
-  {id:14,emoji:'💦',brand:'Some By Mi',name:'AHA BHA PHA 30 Days Miracle Toner',
-   desc:'Three acids, one toner. AHA resurfaces. BHA unclogs. PHA hydrates. 30 consistent days and your skin texture will have a before and after.',
-   skins:['oily','acne','combination'],category:'toner',
-   ingredients:['AHA','BHA','PHA','Tea Tree Extract'],starIng:['AHA','BHA'],
-   ratings:{Nykaa:4.4,Amazon:4.2,Myntra:4.3},
-   platforms:[{name:'Nykaa',price:899,mrp:1099,offer:'Buy 2 get 10% off'},{name:'Amazon',price:849,mrp:1099,offer:null},{name:'Myntra',price:929,mrp:1099,offer:null},{name:'Blinkit',price:879,mrp:1099,offer:null},{name:'Flipkart',price:859,mrp:1099,offer:null}]},
-  {id:15,emoji:'👁',brand:'Plum',name:'Caffeine Eye Cream',
-   desc:'Caffeine for puffiness. Vitamin K for dark circles. Peptides for fine lines. The under-eye area is the thinnest skin on your face — it deserves something specific.',
-   skins:['all'],category:'eye cream',
-   ingredients:['Caffeine','Vitamin K','Peptides','Hyaluronic Acid'],starIng:['Caffeine','Peptides'],
-   ratings:{Nykaa:4.3,Amazon:4.1,Myntra:4.2},
-   platforms:[{name:'Nykaa',price:549,mrp:699,offer:null},{name:'Amazon',price:499,mrp:699,offer:null},{name:'Myntra',price:579,mrp:699,offer:null},{name:'Blinkit',price:529,mrp:699,offer:null},{name:'Flipkart',price:519,mrp:699,offer:null}]},
-];
-
-let currentList=[];
-
-function bestPlat(pl){return pl.reduce((b,p)=>p.price<b.price?p:b,pl[0]);}
-function disc(p,m){return Math.round((1-p/m)*100);}
-function avgRating(r){
-  const vals=Object.values(r);
-  return(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1);
-}
-function stars(n){
-  const f=Math.round(parseFloat(n));
-  return '★'.repeat(f)+'☆'.repeat(5-f);
-}
-
-function getDeliveryText(platName){
-  if(!userPincode) return null;
-  const prefix=userPincode.substring(0,3);
   const metro=['110','400','560','600','700','500','411'].includes(prefix);
-  const map={
-    'Blinkit':metro?'~10 min':'1–2 hours',
-    'Amazon':metro?'Today / Tomorrow':'2–3 days',
-    'Nykaa':metro?'1–2 days':'3–5 days',
-    'Myntra':metro?'2–3 days':'4–6 days',
-    'Flipkart':metro?'1–2 days':'3–5 days',
-  };
+  const map={Blinkit:metro?'~10 min':'1–2 hours',Amazon:metro?'Today / Tomorrow':'2–3 days',Nykaa:metro?'1–2 days':'3–5 days',Myntra:metro?'2–3 days':'4–6 days',Flipkart:metro?'1–2 days':'3–5 days'};
   return map[platName]||null;
 }
 
-function renderProducts(list){
+/* ── PRODUCT DATA ── */
+const products=[
+  {id:1,emoji:'☀️',brand:'Minimalist',name:'Sunscreen SPF 50 PA++++',desc:'A mineral-chemical hybrid engineered for the Indian climate. Matte finish, no white cast — designed for the humidity your skin actually lives in.',skins:['all','oily','combination','acne'],category:'sunscreen',ingredients:['Zinc Oxide 10%','Octinoxate','Niacinamide','Glycerin'],starIng:['Zinc Oxide 10%','Niacinamide'],ratings:{Nykaa:4.4,Amazon:4.3,Myntra:4.2},platforms:[{name:'Nykaa',price:349,mrp:449,offer:'Free mini SPF on orders ₹499+'},{name:'Amazon',price:319,mrp:449,offer:null},{name:'Myntra',price:369,mrp:449,offer:'10% cashback HDFC'},{name:'Blinkit',price:339,mrp:449,offer:null},{name:'Flipkart',price:329,mrp:449,offer:null}]},
+  {id:2,emoji:'🌊',brand:'Dot & Key',name:'Waterlight Gel Sunscreen SPF 50',desc:"Ultra-lightweight water-gel texture with hyaluronic acid. Zero greasiness — built for the days your skin already feels like it's sweating.",skins:['oily','combination','all'],category:'sunscreen',ingredients:['SPF 50 PA++++','Hyaluronic Acid','Watermelon Extract','Vitamin E'],starIng:['SPF 50 PA++++','Hyaluronic Acid'],ratings:{Nykaa:4.5,Amazon:4.3,Myntra:4.4},platforms:[{name:'Nykaa',price:499,mrp:649,offer:'Buy 2 get 15% off'},{name:'Amazon',price:449,mrp:649,offer:null},{name:'Myntra',price:529,mrp:649,offer:null},{name:'Blinkit',price:479,mrp:649,offer:null},{name:'Flipkart',price:459,mrp:649,offer:'5% supercoins'}]},
+  {id:3,emoji:'🧴',brand:'Neutrogena',name:'Ultra Sheer SPF 50+',desc:'Helioplex technology. Dermatologist-recommended. Broad-spectrum UVA/UVB — the one that quietly became a standard in clinics across the country.',skins:['all','sensitive','dry'],category:'sunscreen',ingredients:['Avobenzone','Homosalate','Octisalate','Helioplex'],starIng:['Helioplex','Avobenzone'],ratings:{Nykaa:4.3,Amazon:4.4,Myntra:4.2},platforms:[{name:'Nykaa',price:699,mrp:899,offer:null},{name:'Amazon',price:649,mrp:899,offer:'Subscribe & save 5%'},{name:'Myntra',price:729,mrp:899,offer:null},{name:'Blinkit',price:679,mrp:899,offer:null},{name:'Flipkart',price:659,mrp:899,offer:null}]},
+  {id:4,emoji:'✨',brand:'Lakmé',name:'Sun Expert SPF 50 Tinted',desc:'Sunscreen that earns a second job. Light tint, even coverage, Vitamin C — one fewer product on your shelf, one more reason to actually apply SPF.',skins:['all','combination'],category:'sunscreen',ingredients:['SPF 50','Vitamin C','Titanium Dioxide','Iron Oxides'],starIng:['Vitamin C','Titanium Dioxide'],ratings:{Nykaa:4.1,Amazon:4.0,Myntra:4.2},platforms:[{name:'Nykaa',price:299,mrp:399,offer:null},{name:'Amazon',price:279,mrp:399,offer:null},{name:'Myntra',price:319,mrp:399,offer:'15% off first order'},{name:'Blinkit',price:289,mrp:399,offer:null},{name:'Flipkart',price:284,mrp:399,offer:null}]},
+  {id:5,emoji:'🌿',brand:'Re Aish',name:'Dewy Sunscreen SPF 50 PA++++',desc:"Ceramides and peptides in an SPF. It repairs the barrier while it protects it. For skin that feels tight after sunscreen — this one doesn't tighten.",skins:['dry','sensitive','combination'],category:'sunscreen',ingredients:['SPF 50 PA++++','Ceramides','Peptides','Squalane'],starIng:['Ceramides','Peptides'],ratings:{Nykaa:4.6,Amazon:4.4,Myntra:4.5},platforms:[{name:'Nykaa',price:849,mrp:999,offer:'Free shipping above ₹499'},{name:'Amazon',price:799,mrp:999,offer:null},{name:'Myntra',price:879,mrp:999,offer:null},{name:'Blinkit',price:829,mrp:999,offer:null},{name:'Flipkart',price:809,mrp:999,offer:null}]},
+  {id:6,emoji:'🫧',brand:'Minimalist',name:'Salicylic Acid 2% Face Wash',desc:"A BHA cleanser that goes inside the pore — not just over it. Clears blackheads, controls oil, doesn't leave skin feeling stripped. Gentle enough for daily use.",skins:['oily','acne','combination'],category:'face wash',ingredients:['Salicylic Acid 2%','Niacinamide','Zinc PCA','Panthenol'],starIng:['Salicylic Acid 2%','Niacinamide'],ratings:{Nykaa:4.3,Amazon:4.1,Myntra:4.2},platforms:[{name:'Nykaa',price:299,mrp:399,offer:"Free face mask on orders ₹499+"},{name:'Amazon',price:269,mrp:399,offer:null},{name:'Myntra',price:319,mrp:399,offer:'10% cashback HDFC'},{name:'Blinkit',price:289,mrp:399,offer:null},{name:'Flipkart',price:279,mrp:399,offer:'Extra 5% Axis card'}]},
+  {id:7,emoji:'💧',brand:'CeraVe',name:'Hydrating Facial Cleanser',desc:"Doesn't foam. Doesn't strip. Three ceramides and hyaluronic acid — so skin feels exactly as it should after a wash: clean, not tight, not squeaky, not confused.",skins:['dry','sensitive','all'],category:'face wash',ingredients:['Ceramides','Hyaluronic Acid','Niacinamide','Glycerin'],starIng:['Ceramides','Hyaluronic Acid'],ratings:{Nykaa:4.6,Amazon:4.5,Myntra:4.4},platforms:[{name:'Nykaa',price:899,mrp:1099,offer:'Free mini moisturiser'},{name:'Amazon',price:849,mrp:1099,offer:null},{name:'Myntra',price:949,mrp:1099,offer:null},{name:'Blinkit',price:919,mrp:1099,offer:null},{name:'Flipkart',price:869,mrp:1099,offer:null}]},
+  {id:8,emoji:'🌊',brand:'Neutrogena',name:'Oil-Free Acne Wash',desc:'Clinically proven. The 2% salicylic acid works while you wash. Non-comedogenic — nothing inside this formula is going to make a bad situation worse.',skins:['oily','acne'],category:'face wash',ingredients:['Salicylic Acid 2%','Glycerin','Aloe Vera','Green Tea Extract'],starIng:['Salicylic Acid 2%'],ratings:{Nykaa:4.1,Amazon:4.2,Myntra:4.0},platforms:[{name:'Nykaa',price:749,mrp:899,offer:null},{name:'Amazon',price:699,mrp:899,offer:null},{name:'Myntra',price:779,mrp:899,offer:null},{name:'Blinkit',price:729,mrp:899,offer:null},{name:'Flipkart',price:709,mrp:899,offer:null}]},
+  {id:9,emoji:'✨',brand:'Dot & Key',name:'Niacinamide 10% + Zinc Serum',desc:'10% niacinamide visibly reduces pores in 4 weeks. Zinc controls sebum at the source. One of the most well-tolerated serums for oily skin — no purging, no drama.',skins:['oily','combination','acne'],category:'serum',ingredients:['Niacinamide 10%','Zinc PCA 1%','Hyaluronic Acid','Panthenol'],starIng:['Niacinamide 10%','Zinc PCA 1%'],ratings:{Nykaa:4.5,Amazon:4.3,Myntra:4.4},platforms:[{name:'Nykaa',price:549,mrp:699,offer:'Buy 2 get 15% off'},{name:'Amazon',price:499,mrp:699,offer:null},{name:'Myntra',price:579,mrp:699,offer:null},{name:'Blinkit',price:529,mrp:699,offer:null},{name:'Flipkart',price:519,mrp:699,offer:'5% supercoins'}]},
+  {id:10,emoji:'🌙',brand:'Plum',name:'Vitamin C Serum 15%',desc:'Stable Vitamin C at 15% — strong enough to work, measured enough not to sting. Fades dark spots in 6–8 weeks of consistent use. A morning ingredient.',skins:['all','combination','dry'],category:'serum',ingredients:['Vitamin C 15%','Ferulic Acid','Hyaluronic Acid','Vitamin E'],starIng:['Vitamin C 15%','Ferulic Acid'],ratings:{Nykaa:4.2,Amazon:4.0,Myntra:4.1},platforms:[{name:'Nykaa',price:649,mrp:799,offer:null},{name:'Amazon',price:599,mrp:799,offer:'Subscribe & save 5%'},{name:'Myntra',price:679,mrp:799,offer:null},{name:'Blinkit',price:669,mrp:799,offer:null},{name:'Flipkart',price:619,mrp:799,offer:null}]},
+  {id:11,emoji:'💎',brand:'Minimalist',name:'Retinol 0.3% + Q10 Serum',desc:'The right entry point. 0.3% works — 1% is unnecessary and irritating. Use at night, expect results in 8–12 weeks, not 8 days. Patience is the active ingredient.',skins:['all','dry','combination'],category:'serum',ingredients:['Retinol 0.3%','Coenzyme Q10','Squalane','Peptides'],starIng:['Retinol 0.3%','Coenzyme Q10'],ratings:{Nykaa:4.4,Amazon:4.2,Myntra:4.3},platforms:[{name:'Nykaa',price:589,mrp:749,offer:null},{name:'Amazon',price:549,mrp:749,offer:null},{name:'Myntra',price:619,mrp:749,offer:null},{name:'Blinkit',price:569,mrp:749,offer:null},{name:'Flipkart',price:559,mrp:749,offer:null}]},
+  {id:12,emoji:'🫙',brand:'CeraVe',name:'Moisturising Cream',desc:"The one dermatologists actually use. Three ceramides. Hyaluronic acid. MVE technology that releases moisture for 24 hours. For every skin type — including the ones that've tried everything.",skins:['dry','sensitive','all'],category:'moisturiser',ingredients:['Ceramides','Hyaluronic Acid','Glycerin','Petrolatum'],starIng:['Ceramides','Hyaluronic Acid'],ratings:{Nykaa:4.7,Amazon:4.6,Myntra:4.5},platforms:[{name:'Nykaa',price:999,mrp:1299,offer:'Free travel size with purchase'},{name:'Amazon',price:949,mrp:1299,offer:null},{name:'Myntra',price:1049,mrp:1299,offer:null},{name:'Blinkit',price:979,mrp:1299,offer:null},{name:'Flipkart',price:959,mrp:1299,offer:null}]},
+  {id:13,emoji:'🌸',brand:'Neutrogena',name:'Oil-Free Moisture SPF 35',desc:'Moisturiser and sunscreen folded into one step. Lightweight, non-comedogenic, and quietly effective at a job that two products used to split between them.',skins:['oily','combination','acne'],category:'moisturiser',ingredients:['SPF 35','Glycerin','Dimethicone','Panthenol'],starIng:['SPF 35','Glycerin'],ratings:{Nykaa:4.2,Amazon:4.1,Myntra:4.0},platforms:[{name:'Nykaa',price:799,mrp:999,offer:null},{name:'Amazon',price:749,mrp:999,offer:null},{name:'Myntra',price:829,mrp:999,offer:null},{name:'Blinkit',price:769,mrp:999,offer:null},{name:'Flipkart',price:759,mrp:999,offer:null}]},
+  {id:14,emoji:'💦',brand:'Some By Mi',name:'AHA BHA PHA 30 Days Miracle Toner',desc:'Three acids, one toner. AHA resurfaces. BHA unclogs. PHA hydrates. 30 consistent days and your skin texture will have a before and after.',skins:['oily','acne','combination'],category:'toner',ingredients:['AHA','BHA','PHA','Tea Tree Extract'],starIng:['AHA','BHA'],ratings:{Nykaa:4.4,Amazon:4.2,Myntra:4.3},platforms:[{name:'Nykaa',price:899,mrp:1099,offer:'Buy 2 get 10% off'},{name:'Amazon',price:849,mrp:1099,offer:null},{name:'Myntra',price:929,mrp:1099,offer:null},{name:'Blinkit',price:879,mrp:1099,offer:null},{name:'Flipkart',price:859,mrp:1099,offer:null}]},
+  {id:15,emoji:'👁',brand:'Plum',name:'Caffeine Eye Cream',desc:'Caffeine for puffiness. Vitamin K for dark circles. Peptides for fine lines. The under-eye area is the thinnest skin on your face — it deserves something specific.',skins:['all'],category:'eye cream',ingredients:['Caffeine','Vitamin K','Peptides','Hyaluronic Acid'],starIng:['Caffeine','Peptides'],ratings:{Nykaa:4.3,Amazon:4.1,Myntra:4.2},platforms:[{name:'Nykaa',price:549,mrp:699,offer:null},{name:'Amazon',price:499,mrp:699,offer:null},{name:'Myntra',price:579,mrp:699,offer:null},{name:'Blinkit',price:529,mrp:699,offer:null},{name:'Flipkart',price:519,mrp:699,offer:null}]},
+  {id:16,emoji:'🧪',brand:'Paula\'s Choice',name:'BHA 2% Liquid Exfoliant',desc:'The exfoliant that built a category. Unbuffered salicylic acid in a leave-on liquid — penetrates deeper than any rinse-off formula. One of the most clinically validated OTC exfoliants available.',skins:['oily','acne','combination'],category:'exfoliant',ingredients:['Salicylic Acid 2%','Green Tea Extract','Methylpropanediol','Camellia Oleifera'],starIng:['Salicylic Acid 2%','Green Tea Extract'],ratings:{Nykaa:4.7,Amazon:4.6,Myntra:4.5},platforms:[{name:'Nykaa',price:2499,mrp:2999,offer:'Free travel size on orders ₹2999+'},{name:'Amazon',price:2299,mrp:2999,offer:'Subscribe & save 5%'},{name:'Myntra',price:2599,mrp:2999,offer:null},{name:'Blinkit',price:2449,mrp:2999,offer:null},{name:'Flipkart',price:2349,mrp:2999,offer:'10% HDFC cashback'}]},
+  {id:17,emoji:'✦',brand:'The Ordinary',name:'Glycolic Acid 7% Toning Solution',desc:'7% glycolic acid — the gold standard AHA. Resurfaces dead skin, fades pigmentation, and improves texture over 4–6 weeks of consistent use. One of the most affordable effective exfoliants in the market.',skins:['combination','dry','all'],category:'exfoliant',ingredients:['Glycolic Acid 7%','Aloe Vera','Ginseng Extract','Tasmannia Lanceolata'],starIng:['Glycolic Acid 7%'],ratings:{Nykaa:4.3,Amazon:4.2,Myntra:4.1},platforms:[{name:'Nykaa',price:749,mrp:999,offer:null},{name:'Amazon',price:699,mrp:999,offer:null},{name:'Myntra',price:779,mrp:999,offer:'First order 15% off'},{name:'Blinkit',price:729,mrp:999,offer:null},{name:'Flipkart',price:709,mrp:999,offer:null}]},
+  {id:18,emoji:'🌾',brand:'Minimalist',name:'AHA 25% + BHA 2% Peeling Solution',desc:'A professional-grade weekly peel. 25% AHA resurfaces; 2% BHA clears the pore lining; Hyaluronic acid buffers the experience. Use once a week, never daily. The 10-minute ritual your skin will thank you for.',skins:['oily','combination','acne'],category:'exfoliant',ingredients:['Glycolic Acid 25%','Salicylic Acid 2%','Hyaluronic Acid','Aloe Vera'],starIng:['Glycolic Acid 25%','Salicylic Acid 2%'],ratings:{Nykaa:4.4,Amazon:4.3,Myntra:4.2},platforms:[{name:'Nykaa',price:599,mrp:799,offer:'Free pH tester strip'},{name:'Amazon',price:549,mrp:799,offer:null},{name:'Myntra',price:629,mrp:799,offer:null},{name:'Blinkit',price:579,mrp:799,offer:null},{name:'Flipkart',price:559,mrp:799,offer:'5% supercoins'}]},
+];
+
+/* ── PRODUCT RENDERING ── */
+let currentList=[];
+function bestPlat(pl){return pl.reduce((b,p)=>p.price<b.price?p:b,pl[0]);}
+function disc(p,m){return Math.round((1-p/m)*100);}
+function avgRating(r){const vals=Object.values(r);return(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1);}
+function stars(n){const f=Math.round(parseFloat(n));return '★'.repeat(f)+'☆'.repeat(5-f);}
+
+function renderProducts(list,context){
   currentList=list;
   const wrap=document.getElementById('resultsWrap');
   if(!list.length){
-    wrap.innerHTML=`<div class="empty">
-      <div class="empty-glyph">◎</div>
-      <div class="empty-title">Nothing found for that search</div>
-      <div class="empty-sub">Try a different product name, brand, or ingredient</div>
-    </div>`;
+    wrap.innerHTML=`<div class="empty"><div class="empty-glyph">◎</div><div class="empty-title">Nothing found for that search</div><div class="empty-sub">Try a different product name, brand, or ingredient</div></div>`;
     return;
   }
-  // derive a label from what's showing — no counts
   const cats=[...new Set(list.map(p=>p.category))];
-  const catLabel=cats.length===1
-    ? cats[0].charAt(0).toUpperCase()+cats[0].slice(1)+'s'
-    : 'Skincare';
-  wrap.innerHTML=`<div class="results-meta">
-    <div class="results-context"><div class="results-context-dot"></div>${catLabel} · Prices compared across 5 platforms</div>
-    <div class="results-note">${userPincode?`📍 ${userPincode}`:''}</div>
-  </div>`+
+  const catLabel=cats.length===1?cats[0].charAt(0).toUpperCase()+cats[0].slice(1)+'s':'Skincare';
+  const contextLabel=context||`${catLabel} · ${list.length} products across 5 platforms`;
+  wrap.innerHTML=`<div class="results-meta"><div class="results-context"><div class="results-context-dot"></div>${contextLabel}</div><div class="results-note">${userPincode?`📍 ${userPincode} · `:''}<span style="color:var(--ink4);font-size:10px;">Prices representative — live API planned</span></div></div>`+
   list.map((p,i)=>{
     const best=bestPlat(p.platforms);
     const avg=avgRating(p.ratings);
-    const ratingBars=Object.entries(p.ratings).map(([plat,val])=>
-      `<div class="rating-bar-row">
-        <span>${plat}</span>
-        <div class="rbar-track"><div class="rbar-fill" style="width:${(val/5)*100}%"></div></div>
-        <span>${val}</span>
-      </div>`
-    ).join('');
+    const ratingBars=Object.entries(p.ratings).map(([plat,val])=>`<div class="rating-bar-row"><span>${plat}</span><div class="rbar-track"><div class="rbar-fill" style="width:${(val/5)*100}%"></div></div><span>${val}</span></div>`).join('');
     return `<div class="pcard" style="animation-delay:${i*0.07}s">
       <div class="pcard-accent"></div>
       <div class="pcard-top">
         <div class="pcard-icon">${p.emoji}</div>
         <div class="pcard-info">
-          <div class="pcard-meta">
-            <span class="pcard-brand">${p.brand}</span>
-            <span class="pcard-cat">${p.category}</span>
-          </div>
+          <div class="pcard-meta"><span class="pcard-brand">${p.brand}</span><span class="pcard-cat">${p.category}</span></div>
           <div class="pcard-name">${p.name}</div>
           <div class="pcard-desc">${p.desc}</div>
           <div class="skin-tags">${p.skins.map(s=>`<span class="skin-tag">${s}</span>`).join('')}</div>
           <div class="rating-row">
-            <div>
-              <div class="rating-big">${avg}</div>
-              <div class="rating-stars">${stars(avg)}</div>
-            </div>
+            <div><div class="rating-big">${avg}</div><div class="rating-stars">${stars(avg)}</div></div>
             <div class="rating-bars">${ratingBars}</div>
           </div>
         </div>
@@ -1222,9 +683,7 @@ function renderProducts(list){
       <div class="pcard-bottom">
         <div>
           <div class="sec-label">Key ingredients — ✦ star ingredients</div>
-          <div class="ing-row">${p.ingredients.map(ing=>
-            `<span class="ing ${p.starIng.includes(ing)?'star':''}">${p.starIng.includes(ing)?'✦ ':''}${ing}</span>`
-          ).join('')}</div>
+          <div class="ing-row">${p.ingredients.map(ing=>`<span class="ing ${p.starIng.includes(ing)?'star':''}">${p.starIng.includes(ing)?'✦ ':''}${ing}</span>`).join('')}</div>
         </div>
         <div>
           <div class="sec-label">Price comparison across platforms${userPincode?' · best delivery for '+userPincode:''}</div>
@@ -1238,11 +697,7 @@ function renderProducts(list){
               <div><span class="plat-price">₹${pl.price}</span><span class="plat-mrp">₹${pl.mrp}</span></div>
               <span class="plat-disc">${disc(pl.price,pl.mrp)}% off</span>
               ${pl.offer?`<div class="plat-offer">🎁 ${pl.offer}</div>`:''}
-              <div class="plat-delivery ${isFast?'fast':''}">${
-                delivText
-                  ? (isFast?'⚡ ':'📦 ')+delivText
-                  : userPincode?'📦 Checking…':'Enter pincode above'
-              }</div>
+              <div class="plat-delivery ${isFast?'fast':''}">${delivText?(isFast?'⚡ ':'📦 ')+delivText:userPincode?'📦 Checking…':'Enter pincode above'}</div>
             </div>`;
           }).join('')}</div>
         </div>
@@ -1254,20 +709,306 @@ function renderProducts(list){
 function doSearch(){
   const q=document.getElementById('searchInput').value.toLowerCase().trim();
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-  if(!q){renderProducts(products);return;}
+  hideSuggested();
+  if(!q){
+    document.querySelectorAll('.chip')[5].classList.add('active');
+    renderProducts(products,'All skincare · 18 products across 5 platforms');
+    return;
+  }
   renderProducts(products.filter(p=>
-    p.name.toLowerCase().includes(q)||
-    p.brand.toLowerCase().includes(q)||
-    p.category.toLowerCase().includes(q)||
-    p.ingredients.some(i=>i.toLowerCase().includes(q))||
-    p.desc.toLowerCase().includes(q)
+    p.name.toLowerCase().includes(q)||p.brand.toLowerCase().includes(q)||
+    p.category.toLowerCase().includes(q)||p.ingredients.some(i=>i.toLowerCase().includes(q))||p.desc.toLowerCase().includes(q)
   ));
 }
 function filterSkin(e,type){
   document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
   e.target.classList.add('active');
   document.getElementById('searchInput').value='';
-  renderProducts(type==='all'?products:products.filter(p=>p.skins.includes(type)));
+  if(type==='all'){
+    hideSuggested();
+    renderProducts(products,'All skincare · 18 products across 5 platforms');
+  } else {
+    const filtered=products.filter(p=>p.skins.includes(type));
+    const skinLabels={oily:'Oily skin',dry:'Dry skin',combination:'Combination skin',sensitive:'Sensitive skin',acne:'Acne-prone skin'};
+    showSuggested(type,filtered);
+    renderProducts(filtered,`${skinLabels[type]} · ${filtered.length} matched products`);
+  }
+}
+
+/* Suggested picks: top 3 highest-rated for the skin type, one per category */
+const skinDescriptions={
+  oily:'Controls sebum, clears pores, mattifies without stripping.',
+  dry:'Restores the barrier, locks in moisture, soothes tightness.',
+  combination:'Balances the T-zone without drying out the cheeks.',
+  sensitive:'Minimal ingredients, maximum gentleness, zero fragrance.',
+  acne:'Clears the pore from inside, calms inflammation, fades marks.',
+};
+function showSuggested(type,filtered){
+  const el=document.getElementById('suggestedSection');
+  // Pick up to 3 products: highest rated, one per category priority
+  const priority=['cleanser','serum','moisturiser','sunscreen','face wash','toner','exfoliant','eye cream'];
+  const seen=new Set();
+  const picks=[];
+  for(const cat of priority){
+    if(picks.length>=3)break;
+    const match=filtered.filter(p=>p.category===cat&&!seen.has(p.id)).sort((a,b)=>parseFloat(avgRating(b.ratings))-parseFloat(avgRating(a.ratings)));
+    if(match.length){seen.add(match[0].id);picks.push(match[0]);}
+  }
+  if(!picks.length){el.style.display='none';return;}
+  const skinName={oily:'Oily',dry:'Dry',combination:'Combination',sensitive:'Sensitive',acne:'Acne-prone'}[type];
+  el.style.display='block';
+  el.innerHTML=`
+    <div class="suggested-inner">
+      <div class="suggested-head">
+        <div class="suggested-eyebrow">Suggested for you</div>
+        <div class="suggested-title">${skinName} skin picks</div>
+        <div class="suggested-sub">${skinDescriptions[type]}</div>
+      </div>
+      <div class="suggested-cards">
+        ${picks.map((p,i)=>{
+          const best=bestPlat(p.platforms);
+          const avg=avgRating(p.ratings);
+          return `<div class="scard" style="animation-delay:${i*0.1}s">
+            <div class="scard-icon">${p.emoji}</div>
+            <div class="scard-body">
+              <div class="scard-brand">${p.brand}</div>
+              <div class="scard-name">${p.name}</div>
+              <div class="scard-cat">${p.category}</div>
+              <div class="scard-rating">${stars(avg)} <span class="scard-rating-num">${avg}</span></div>
+            </div>
+            <div class="scard-price">
+              <div class="scard-price-from">from</div>
+              <div class="scard-price-val">₹${best.price}</div>
+              <div class="scard-price-where">${best.name}</div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+function hideSuggested(){
+  document.getElementById('suggestedSection').style.display='none';
+}
+
+/* ── GLOSSARY DATA ── */
+const glossary=[
+  {name:'Niacinamide',type:'active',category:'actives',what:'Vitamin B3. One of skincare\'s most studied ingredients. Regulates oil production, fades post-acne marks, minimises pore appearance, and strengthens the skin barrier.',good:'All skin types — exceptionally well-tolerated. Especially effective for oily and acne-prone skin.',bad:'Almost none. Very rarely causes flushing at high concentrations (above 10%).',note:'Pairs well with Zinc PCA. Can be used morning or evening.'},
+  {name:'Salicylic Acid',type:'exfoliant',category:'actives',what:'A BHA (beta hydroxy acid) that is oil-soluble — the only exfoliant that penetrates inside the pore to dissolve sebum and dead cells at the source.',good:'Oily, acne-prone, combination skin. Excellent for blackheads and whiteheads.',bad:'Dry and sensitive skin — can strip the moisture barrier if overused. Not for use during pregnancy.',note:'Use 2% maximum. Start with 2–3x per week.'},
+  {name:'Hyaluronic Acid',type:'humectant',category:'hydration',what:'A molecule that holds up to 1000x its weight in water. Draws moisture from the environment into the skin, creating plump, hydrated texture.',good:'All skin types. A universal hydrator.',bad:'None in standard concentrations (0.1–2%). High-molecular-weight HA stays on the surface; low-MW penetrates deeper.',note:'Apply to damp skin for best results. Always follow with a moisturiser to seal in the hydration.'},
+  {name:'Ceramides',type:'barrier lipid',category:'barrier',what:'Naturally occurring lipids (fats) that hold skin cells together like a mortar between bricks. Essential for a functioning moisture barrier.',good:'Dry, sensitive, compromised-barrier skin. Everyone benefits from ceramides.',bad:'None. Ceramides are identical to what skin naturally produces.',note:'CeraVe contains ceramides 1, 3, and 6-II — the three essential types in a ratio close to natural skin composition.'},
+  {name:'Retinol',type:'retinoid',category:'actives',what:'Vitamin A derivative that accelerates cell turnover, stimulates collagen production, fades pigmentation, and reduces fine lines. The most evidence-backed anti-ageing ingredient in existence.',good:'All skin types seeking anti-ageing. Effective for acne.',bad:'Pregnancy — avoid entirely. Dry, sensitive skin — start slowly and buffer with moisturiser.',note:'Night use only. Causes photosensitivity — SPF the next morning is non-negotiable. Expect 2–4 weeks of initial purging.'},
+  {name:'Vitamin C',type:'antioxidant',category:'actives',what:'A potent antioxidant that inhibits melanin production (fades dark spots), protects against UV-induced free radical damage, and brightens skin tone.',good:'All skin types. Most impactful for dull, uneven, or post-acne skin.',bad:'Sensitive skin at high concentrations (above 15%). Unstable — oxidises when exposed to air or light.',note:'Morning use. Store cool and dark. If it turns orange/brown, it\'s oxidised — discard.'},
+  {name:'Glycerin',type:'humectant',category:'hydration',what:'A simple, effective humectant that draws water into the skin. Found in nearly every moisturiser for good reason — it works, it\'s gentle, and it costs almost nothing.',good:'All skin types. Particularly helpful for dry and sensitive skin.',bad:'None. One of the safest ingredients in skincare.',note:'Often listed as an afterthought but does real work. Its presence near the top of an ingredient list is a good sign.'},
+  {name:'Zinc Oxide',type:'sunscreen filter',category:'uv',what:'A physical (mineral) UV filter that sits on the skin and reflects UV radiation. Provides stable, broad-spectrum UVA and UVB protection.',good:'All skin types. Best option for sensitive skin. Safe for reefs.',bad:'Can leave a white cast on deeper skin tones, though nano-zinc formulas minimise this.',note:'Chemical filters absorb UV; physical filters reflect it. Zinc oxide is the most photostable physical filter.'},
+  {name:'AHA (Glycolic/Lactic Acid)',type:'exfoliant',category:'actives',what:'Alpha hydroxy acids dissolve the bonds between dead skin cells at the surface, revealing smoother, brighter skin underneath. Water-soluble — works on the surface.',good:'Dry, dull, uneven-textured skin. Helps with hyperpigmentation.',bad:'Sensitive skin if overused. Increases sun sensitivity — SPF is essential.',note:'Glycolic acid is the smallest AHA and penetrates deepest. Lactic acid is gentler and also a humectant.'},
+  {name:'Peptides',type:'signalling protein',category:'actives',what:'Short chains of amino acids that act as messengers, signalling skin to produce more collagen and elastin. Anti-ageing ingredient with good evidence and minimal irritation.',good:'All skin types. Especially useful for ageing, dry, or sensitive skin that can\'t tolerate retinol.',bad:'None. Very well-tolerated.',note:'Work differently from retinol — can be used by those who cannot tolerate retinoids.'},
+  {name:'Squalane',type:'emollient',category:'barrier',what:'A stable, lightweight oil derived from olives (or sugarcane). Mimics the skin\'s own sebum. Prevents moisture loss without clogging pores.',good:'All skin types. Surprisingly suitable for oily skin — its similarity to sebum signals the skin to produce less.',bad:'None in purified form. Very low comedogenic rating.',note:'Squalene (with an e) is the unstable form naturally in skin. Squalane is the hydrogenated, shelf-stable version used in products.'},
+  {name:'Fragrance / Parfum',type:'cosmetic additive',category:'avoid',what:'A mixture of undisclosed aromatic compounds added for scent. Can comprise dozens of chemicals that brands are not legally required to list individually.',good:'None skincare-related. Purely aesthetic.',bad:'Sensitive skin, compromised barrier, acne-prone skin. A leading cause of contact dermatitis.',note:'Fragrance-free is not the same as unscented. Unscented products may contain masking fragrances. Read the list.'},
+  {name:'Denatured Alcohol',type:'solvent',category:'avoid',what:'Listed as alcohol denat., SD alcohol, or ethanol. Used to make products feel fast-drying and lightweight. Disrupts the lipid barrier and increases TEWL (water loss).',good:'None for skin health. Helpful as a preservative/texture agent from a formulation standpoint.',bad:'Dry, sensitive, barrier-compromised skin. Problematic for anyone with eczema or rosacea.',note:'Not all alcohols are bad — fatty alcohols (cetyl, stearyl, cetearyl) are emollients, not irritants.'},
+  {name:'Zinc PCA',type:'sebum regulator',category:'actives',what:'A combination of zinc and pyrrolidone carboxylic acid. Regulates sebum production at the source and has mild antimicrobial properties.',good:'Oily, acne-prone, and combination skin.',bad:'None significant.',note:'Often paired with niacinamide for a synergistic effect on oil control.'},
+  {name:'Ferulic Acid',type:'antioxidant',category:'actives',what:'A plant-based antioxidant that stabilises Vitamin C and E, making them significantly more effective and longer-lasting on the skin.',good:'All skin types. Best used in combination with Vitamin C.',bad:'None.',note:'The classic vitamin C formulation that underpins most clinical studies pairs 15% L-ascorbic acid with 0.5% ferulic acid.'},
+  {name:'Avobenzone',type:'sunscreen filter',category:'uv',what:'A chemical UV filter that absorbs UVA radiation. One of the most effective UVA filters currently approved, but inherently photounstable — degrades in sunlight.',good:'All skin types when properly stabilised.',bad:'Can degrade quickly without a photostabiliser. Sensitive skin can occasionally react.',note:'Look for it paired with Helioplex or Octocrylene — these stabilise avobenzone and extend its efficacy.'},
+  {name:'Panthenol',type:'humectant',category:'hydration',what:'Provitamin B5. Attracts and retains moisture, soothes irritation, and supports barrier repair. One of the gentlest, most effective ingredients in skincare.',good:'All skin types. Especially good for sensitive, reactive, or post-procedure skin.',bad:'None. Extremely well-tolerated.',note:'Often found in products designed for compromised barriers. Works synergistically with niacinamide.'},
+  {name:'Tea Tree Oil',type:'antimicrobial',category:'actives',what:'An essential oil with natural antimicrobial and anti-inflammatory properties. Effective against the bacteria implicated in acne (C. acnes) at controlled concentrations.',good:'Oily and acne-prone skin at 5% concentration.',bad:'Sensitive skin at high concentrations. Should not be used undiluted. Possible allergen.',note:'Evidence is strongest at 5%. Higher concentrations increase risk without adding benefit.'},
+];
+
+let glossaryFilter={search:'',cat:'all'};
+
+function initGlossary(){
+  const cats=['all',...new Set(glossary.map(g=>g.category))];
+  document.getElementById('glossaryCats').innerHTML=cats.map(c=>
+    `<div class="gcat ${c==='all'?'active':''}" onclick="filterGlossaryCat(event,'${c}')">${c==='all'?'All':c.charAt(0).toUpperCase()+c.slice(1)}</div>`
+  ).join('');
+  renderGlossary();
+}
+
+function filterGlossary(){
+  glossaryFilter.search=document.getElementById('glossarySearch').value.toLowerCase();
+  renderGlossary();
+}
+function filterGlossaryCat(e,cat){
+  glossaryFilter.cat=cat;
+  document.querySelectorAll('.gcat').forEach(c=>c.classList.remove('active'));
+  e.target.classList.add('active');
+  renderGlossary();
+}
+function renderGlossary(){
+  let list=glossary;
+  if(glossaryFilter.cat!=='all')list=list.filter(g=>g.category===glossaryFilter.cat);
+  if(glossaryFilter.search)list=list.filter(g=>g.name.toLowerCase().includes(glossaryFilter.search)||g.what.toLowerCase().includes(glossaryFilter.search)||g.category.toLowerCase().includes(glossaryFilter.search));
+  const grid=document.getElementById('glossaryGrid');
+  if(!list.length){
+    grid.innerHTML=`<div class="glossary-empty"><div class="glossary-empty-glyph">◎</div><div class="glossary-empty-text">No ingredients found</div></div>`;
+    return;
+  }
+  grid.innerHTML=list.map((g,i)=>`
+    <div class="gcard" style="animation-delay:${i*0.04}s">
+      <div class="gcard-top">
+        <div class="gcard-name">${g.name}</div>
+        <div class="gcard-type">${g.type}</div>
+      </div>
+      <div class="gcard-what">${g.what}</div>
+      <div class="gcard-skin">
+        <div class="gcard-skin-row">
+          <span class="gcard-skin-label good-label">Good for</span>
+          <span class="gcard-skin-text">${g.good}</span>
+        </div>
+        <div class="gcard-skin-row">
+          <span class="gcard-skin-label bad-label">Caution</span>
+          <span class="gcard-skin-text">${g.bad}</span>
+        </div>
+      </div>
+      ${g.note?`<div class="gcard-note">💡 ${g.note}</div>`:''}
+    </div>
+  `).join('');
+}
+
+/* ── ROUTINE BUILDER ── */
+let selectedSkin=null, selectedTime=null;
+
+function selectSkin(type,el){
+  selectedSkin=type;
+  document.querySelectorAll('.skin-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  checkBuildReady();
+}
+function selectTime(time,el){
+  selectedTime=time;
+  document.querySelectorAll('.time-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  checkBuildReady();
+}
+function checkBuildReady(){
+  document.getElementById('buildBtn').disabled=!(selectedSkin&&selectedTime);
+}
+
+// Routine recipes: skin type + time → array of {step, productId, tip}
+const routineRecipes={
+  oily:{
+    morning:[
+      {step:'Cleanser',id:6,tip:'Work into a lather for 60 seconds. The salicylic acid needs contact time to do its job.'},
+      {step:'Serum',id:9,tip:'3–4 drops on clean, dry skin. Pat, don\'t rub. Give it 60 seconds to absorb before moisturising.'},
+      {step:'Moisturiser',id:13,tip:'A light layer is enough. Skipping moisturiser makes oiliness worse — your skin compensates by producing more sebum.'},
+      {step:'Sunscreen',id:1,tip:'The last step, always. SPF on top of everything. Apply generously — a ¼ teaspoon for face and neck.'},
+    ],
+    evening:[
+      {step:'Cleanser',id:6,tip:'Evening cleanse removes everything from the day. Take your time.'},
+      {step:'Toner',id:14,tip:'Use 2–3 nights per week maximum. Acids every day leads to over-exfoliation — irritation, not improvement.'},
+      {step:'Serum',id:11,tip:'Night use only. Start with every third night. Your skin adapts — increase frequency slowly.'},
+      {step:'Moisturiser',id:13,tip:'Yes, even with retinol. A lightweight layer prevents the dryness retinol can cause.'},
+    ]
+  },
+  dry:{
+    morning:[
+      {step:'Cleanser',id:7,tip:'Cleanse gently — dry skin doesn\'t need stripping. This one is designed to clean without depleting.'},
+      {step:'Serum',id:10,tip:'Vitamin C in the morning fights the oxidative stress your skin accumulates throughout the day.'},
+      {step:'Moisturiser',id:12,tip:'The ceramide trio in this cream repairs what everyday life depletes. Be generous with it.'},
+      {step:'Sunscreen',id:5,tip:'This SPF also repairs your barrier — doubles as a treatment and protection step.'},
+    ],
+    evening:[
+      {step:'Cleanser',id:7,tip:'A gentle cleanse to remove SPF and the day without disturbing your barrier.'},
+      {step:'Serum',id:11,tip:'Retinol is the most evidence-backed anti-ageing ingredient. Buffer it: apply moisturiser first if your skin is reactive.'},
+      {step:'Moisturiser',id:12,tip:'The most important step in a dry skin routine. Use every night, never skip.'},
+      {step:'Eye Cream',id:15,tip:'Ring finger only. The lightest possible touch — under-eye skin is thinner than anywhere else on your face.'},
+    ]
+  },
+  combination:{
+    morning:[
+      {step:'Cleanser',id:6,tip:'Salicylic acid manages the T-zone without stripping the drier areas. One cleanser, balanced across zones.'},
+      {step:'Serum',id:9,tip:'Niacinamide is the ideal combination skin ingredient — it normalises oil production without dehydrating.'},
+      {step:'Moisturiser',id:13,tip:'Lightweight formula won\'t aggravate the T-zone while keeping the cheeks comfortable.'},
+      {step:'Sunscreen',id:2,tip:'The water-gel texture disappears into combination skin without emphasising oily areas.'},
+    ],
+    evening:[
+      {step:'Cleanser',id:6,tip:'Remove everything. Combination skin needs consistent cleansing to keep pores clear.'},
+      {step:'Toner',id:14,tip:'2–3x per week. Helps even out texture across zones over time.'},
+      {step:'Serum',id:11,tip:'Retinol normalises cell turnover, which helps combination skin act less like two separate skin types.'},
+      {step:'Moisturiser',id:12,tip:'Apply lightly on the T-zone, more generously on the cheeks.'},
+    ]
+  },
+  sensitive:{
+    morning:[
+      {step:'Cleanser',id:7,tip:'The gentlest cleanse in the catalog. No fragrance, no stripping, no surprises. Use lukewarm water.'},
+      {step:'Serum',id:9,tip:'Niacinamide is one of the most tolerated actives for sensitive skin. Strengthens the barrier it\'s standing on.'},
+      {step:'Moisturiser',id:12,tip:'Ceramides restore exactly what sensitive skin is deficient in. This is the reference moisturiser for reactive skin.'},
+      {step:'Sunscreen',id:3,tip:'Helioplex technology is photostable and dermatologist-tested. Skip the physical SPFs that can leave residue.'},
+    ],
+    evening:[
+      {step:'Cleanser',id:7,tip:'Double cleanse if you\'ve worn SPF. First pass with a gentle oil cleanser, second with this.'},
+      {step:'Serum',id:9,tip:'Evening niacinamide application builds on the morning dose. Consistent use shows results at 4–8 weeks.'},
+      {step:'Moisturiser',id:12,tip:'Apply to slightly damp skin to trap moisture beneath the ceramide barrier.'},
+      {step:'Eye Cream',id:15,tip:'Sensitive skin often shows stress in the eye area first. Caffeine and peptides, no fragrance.'},
+    ]
+  },
+  acne:{
+    morning:[
+      {step:'Cleanser',id:8,tip:'Lather on dry skin for 30 seconds before adding water — increases contact time with the salicylic acid.'},
+      {step:'Serum',id:9,tip:'Niacinamide fades post-acne marks and prevents new ones forming. The most underrated acne ingredient.'},
+      {step:'Moisturiser',id:13,tip:'Non-comedogenic means nothing inside will block a pore. Don\'t skip this — dehydrated skin triggers more oil.'},
+      {step:'Sunscreen',id:1,tip:'SPF prevents post-acne marks from darkening permanently. Without it, you\'re solving the breakout but not the aftermath.'},
+    ],
+    evening:[
+      {step:'Cleanser',id:8,tip:'Two cleanses if you\'ve worn SPF all day. The second one actually cleans skin; the first removes product.'},
+      {step:'Toner',id:14,tip:'AHA resurfaces, BHA clears the pore. 3x per week maximum — overuse causes the irritation that triggers breakouts.'},
+      {step:'Serum',id:11,tip:'Retinol is clinically proven for acne. Start at 0.3%. Purging is normal in weeks 2–4. Stick with it.'},
+      {step:'Moisturiser',id:13,tip:'Barrier repair at night means skin is more resilient against the irritation that leads to breakouts.'},
+    ]
+  },
+};
+
+function buildRoutine(){
+  if(!selectedSkin||!selectedTime)return;
+  const recipe=routineRecipes[selectedSkin][selectedTime];
+  const skinName={oily:'Oily',dry:'Dry',combination:'Combination',sensitive:'Sensitive',acne:'Acne-prone'}[selectedSkin];
+  const timeIcon=selectedTime==='morning'?'☀️':'🌙';
+  const steps=recipe.map(r=>({...r,product:products.find(p=>p.id===r.id)}));
+  const totalBest=steps.reduce((sum,s)=>{
+    const best=bestPlat(s.product.platforms);
+    return sum+best.price;
+  },0);
+
+  const html=`<div class="routine-result">
+    <div class="routine-result-header">
+      <div class="routine-result-title">${timeIcon} ${skinName} skin · ${selectedTime.charAt(0).toUpperCase()+selectedTime.slice(1)} routine</div>
+      <div class="routine-result-badge">4-step · evidence-based</div>
+    </div>
+    <div class="routine-steps-list">
+      ${steps.map((s,i)=>{
+        const best=bestPlat(s.product.platforms);
+        return `<div class="routine-step-item">
+          <div class="rsi-num">${i+1}</div>
+          <div class="rsi-content">
+            <div class="rsi-step-name">${s.step}</div>
+            <div class="rsi-product-name">${s.product.name}</div>
+            <div class="rsi-product-brand">${s.product.brand}</div>
+            <div class="rsi-tip">${s.tip}</div>
+            <div class="rsi-price">
+              <span class="rsi-best-price">₹${best.price}</span>
+              <span class="rsi-best-where">Best on ${best.name}</span>
+              <button class="rsi-search-btn" onclick="searchProduct('${s.product.name}')">View all prices →</button>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="routine-total">
+      <div>
+        <div class="routine-total-label">Estimated total (best prices)</div>
+        <div class="routine-total-price">₹${totalBest.toLocaleString('en-IN')}</div>
+      </div>
+      <div class="routine-total-note">Prices illustrative · updated weekly</div>
+    </div>
+  </div>`;
+
+  const resultDiv=document.getElementById('routineResult');
+  resultDiv.innerHTML=html;
+  resultDiv.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function searchProduct(name){
+  showView('compare');
+  document.getElementById('searchInput').value=name;
+  setTimeout(()=>{doSearch();},100);
 }
 
 /* ── BOT ── */
@@ -1276,25 +1017,26 @@ function closeBot(){document.getElementById('botOverlay').classList.remove('open
 function closeBotBg(e){if(e.target.id==='botOverlay')closeBot();}
 
 const responses=[
-  {keys:['sunscreen','spf','sun'],reply:'SPF is the single most effective anti-ageing product ever made — and most people skip it.\n\nSPF 50 minimum, every day. Reapply every 2 hours outdoors.\n\nFor oily skin → Minimalist SPF 50 or Dot & Key Waterlight Gel. Matte, no white cast.\nFor dry skin → Re Aish Dewy Sunscreen. Ceramides + that glass-skin finish.\nFor sensitive skin → Neutrogena Ultra Sheer. Helioplex technology, dermatologist-tested.\n\nSearch any of these above to see where it\'s cheapest right now.'},
-  {keys:['oily','sebum','shine','greasy'],reply:'Oily skin isn\'t the enemy — it\'s imbalance. Your skin produces oil because it needs to; the goal is equilibrium, not stripping.\n\nWhat actually works:\n→ Salicylic acid cleanser (BHA dissolves sebum inside the pore)\n→ Niacinamide serum (regulates at the source)\n→ Lightweight gel moisturiser (skipping it makes oiliness worse — your skin compensates)\n→ Matte SPF\n\nSearch any of these on Twacha for the best price today.'},
-  {keys:['dry','flaky','tight','moisture','hydrat'],reply:'Dry skin is often a compromised barrier. Ceramides rebuild it. Hyaluronic acid draws moisture in. Glycerin seals it.\n\nAvoid: foaming cleansers, anything with denatured alcohol high on the list, strong exfoliants daily.\n\nBest picks here: CeraVe Hydrating Cleanser, CeraVe Moisturising Cream, Re Aish Dewy Sunscreen.'},
-  {keys:['acne','pimple','breakout','spot'],reply:'Acne = inflammation + clogged pores. Salicylic acid is oil-soluble — the only exfoliant that gets inside a pore and dissolves the blockage.\n\nA simple acne routine:\n→ Cleanser: Minimalist Salicylic 2%\n→ Toner: Some By Mi AHA BHA (2–3x week)\n→ Moisturiser: Neutrogena Oil-Free\n→ Sunscreen: Minimalist SPF 50\n\nDon\'t layer too many actives. One BHA is enough.'},
-  {keys:['sensitive'],reply:'Sensitive skin needs simplicity. Fewer ingredients = smaller chance of a reaction.\n\nLook for: ceramides, centella asiatica, oat extract, allantoin.\nAvoid: fragrance (listed as "parfum"), denatured alcohol, essential oils, strong acids.\n\nRule: patch test everything. Inner arm, 48 hours. Then introduce slowly.'},
-  {keys:['niacinamide','vitamin b3'],reply:'Niacinamide is Vitamin B3 — one of the most studied ingredients in skincare. Controls sebum, fades pigmentation, minimises pore appearance, strengthens the barrier. Suitable for all skin types. Rarely causes irritation.\n\nAt 10% you\'ll see results in 4–8 weeks. Pair with Zinc PCA for enhanced oil control.'},
-  {keys:['vitamin c','brightening','dark spot','pigment'],reply:'Vitamin C inhibits melanin (dark spots) and protects against UV-induced damage. At 15% it\'s effective. Above 20% it starts to irritate.\n\nMorning use only. Store cool and dark. If it turns orange or brown — it\'s oxidised, discard it.\n\nBest pick here: Plum Vitamin C 15%.'},
-  {keys:['retinol','retinoid'],reply:'Retinol is Vitamin A. It increases cell turnover, stimulates collagen, reduces fine lines. It works — but requires 12 weeks minimum before you judge it.\n\nStart at 0.3% (not 1%). Night use only. Moisturise right after. SPF the next morning is non-negotiable.\n\nExpect 2–4 weeks of purging. This is normal. Do not stop.'},
-  {keys:['ceramide','barrier'],reply:'Ceramides are the lipids that hold your skin barrier together. When depleted — from over-cleansing, harsh actives, or environmental stress — skin becomes reactive, sensitive, and dehydrated.\n\nCeraVe contains the three essential ceramides (1, 3, 6-II) in a ratio close to what\'s naturally found in skin.'},
-  {keys:['routine','steps','order','how to'],reply:'A routine that works:\n\nMorning: cleanser → serum (Vitamin C or Niacinamide) → moisturiser → SPF\nEvening: cleanser → exfoliant (2–3x a week only) → serum (Retinol or Niacinamide) → moisturiser\n\nIntroduce one product at a time. Wait 2 weeks before adding the next. Patch test everything first. Consistency beats complexity.'},
-  {keys:['avoid','bad','harmful','wrong'],reply:'Ingredients to think carefully about:\n\nOily/acne skin: coconut oil, isopropyl myristate, heavy silicones, mineral oil\nSensitive skin: fragrance ("parfum"), denatured alcohol, essential oils, strong daily exfoliants\n\nRemember: ingredients appear in descending order of concentration. Read from the top.'},
-  {keys:['compare','price','cheap','affordable'],reply:'Search any product above and Twacha instantly compares prices across Nykaa, Amazon, Myntra, Blinkit, and Flipkart. The best price is highlighted. Offers, free gifts, delivery times — all visible. Enter your pincode to see how fast it actually reaches you.'},
-  {keys:['eye','dark circle','puff','undereye'],reply:'Under-eye skin is the thinnest on your face — it needs targeted care.\n\nCaffeine constricts blood vessels (reduces puffiness). Vitamin K targets dark circles. Peptides support collagen.\n\nApply with your ring finger — lightest touch, least pressure. Best pick here: Plum Caffeine Eye Cream.'},
+  {keys:['sunscreen','spf','sun'],reply:'SPF is the single most effective anti-ageing product ever made — and most people skip it.\n\nSPF 50 minimum, every day. Reapply every 2 hours outdoors.\n\nFor oily skin → Minimalist SPF 50 or Dot & Key Waterlight Gel.\nFor dry skin → Re Aish Dewy Sunscreen. Ceramides + barrier repair.\nFor sensitive skin → Neutrogena Ultra Sheer. Helioplex, dermatologist-tested.\n\nSearch any of these in Compare, or use the Routine Builder.'},
+  {keys:['oily','sebum','shine','greasy'],reply:'Oily skin isn\'t the enemy — it\'s imbalance.\n\nWhat actually works:\n→ Salicylic acid cleanser (BHA dissolves sebum inside the pore)\n→ Niacinamide serum (regulates oil at the source)\n→ Lightweight gel moisturiser (skipping it makes oiliness worse)\n→ Matte SPF\n\nOr: open Routine Builder, pick Oily, and get a ready 4-step plan.'},
+  {keys:['dry','flaky','tight','moisture','hydrat'],reply:'Dry skin is often a compromised barrier. Ceramides rebuild it. Hyaluronic acid draws moisture in.\n\nAvoid: foaming cleansers, anything with denatured alcohol, strong daily exfoliants.\n\nBest picks: CeraVe Hydrating Cleanser, CeraVe Moisturising Cream, Re Aish Dewy Sunscreen.'},
+  {keys:['acne','pimple','breakout','spot'],reply:'Acne = inflammation + clogged pores. Salicylic acid is oil-soluble — it gets inside the pore.\n\nA simple acne routine:\n→ Cleanser: Neutrogena Oil-Free Acne Wash\n→ Toner: Some By Mi AHA BHA (3x/week only)\n→ Moisturiser: Neutrogena Oil-Free\n→ Sunscreen: Minimalist SPF 50\n\nDon\'t layer too many actives. One BHA is enough.'},
+  {keys:['sensitive'],reply:'Sensitive skin needs simplicity. Fewer ingredients = smaller chance of a reaction.\n\nLook for: ceramides, centella asiatica, panthenol, allantoin.\nAvoid: fragrance ("parfum"), denatured alcohol, essential oils.\n\nRule: patch test everything. Inner arm, 48 hours. Then introduce slowly.'},
+  {keys:['niacinamide','vitamin b3'],reply:'Niacinamide is Vitamin B3 — one of the most studied ingredients. Controls sebum, fades pigmentation, minimises pore appearance, strengthens the barrier. Suitable for all skin types.\n\nAt 10%, results appear in 4–8 weeks. Check the Glossary for a full breakdown.'},
+  {keys:['vitamin c','brightening','dark spot','pigment'],reply:'Vitamin C inhibits melanin (dark spots) and protects against UV-induced damage. At 15%, effective. Above 20%, starts to irritate.\n\nMorning use only. Store cool and dark. If it turns orange — it\'s oxidised, discard it.\n\nBest pick: Plum Vitamin C 15%.'},
+  {keys:['retinol','retinoid'],reply:'Retinol is Vitamin A. It increases cell turnover, stimulates collagen, reduces fine lines.\n\nStart at 0.3% (not 1%). Night use only. Moisturise right after. SPF the next morning is non-negotiable.\n\nExpect 2–4 weeks of purging. This is normal. Do not stop.'},
+  {keys:['ceramide','barrier'],reply:'Ceramides are the lipids that hold your skin barrier together. When depleted — from over-cleansing or harsh actives — skin becomes reactive and dehydrated.\n\nCeraVe contains the three essential ceramides (1, 3, 6-II) in a ratio close to natural skin.'},
+  {keys:['routine','steps','order','how to'],reply:'Use the Routine Builder — pick your skin type and morning or evening, and I\'ll build a 4-step plan with products and prices.\n\nOr the standard order:\nMorning: cleanser → serum → moisturiser → SPF\nEvening: cleanser → exfoliant (2–3x week) → serum → moisturiser\n\nIntroduce one product at a time. Wait 2 weeks before adding the next.'},
+  {keys:['avoid','bad','harmful','wrong'],reply:'Ingredients to think carefully about:\n\nOily/acne skin: coconut oil, isopropyl myristate, heavy silicones\nSensitive skin: fragrance ("parfum"), denatured alcohol, essential oils\n\nCheck the Glossary — the Avoid category lists everything with context.'},
+  {keys:['glossary','ingredient','what is','explain'],reply:'The Ingredient Glossary is in the nav — it covers 18 common ingredients with plain-language explanations, which skin types each helps or harms, and practical notes.\n\nSearch by ingredient name or browse by category: Actives, Hydration, Barrier, UV filters, and a dedicated Avoid section.'},
+  {keys:['compare','price','cheap','affordable'],reply:'Search any product in the Compare tab and Twacha compares prices across Nykaa, Amazon, Myntra, Blinkit, and Flipkart instantly. Best price is highlighted. Enter your pincode for delivery estimates.'},
+  {keys:['eye','dark circle','puff','undereye'],reply:'Under-eye skin is the thinnest on your face — it needs targeted care.\n\nCaffeine constricts blood vessels (puffiness). Vitamin K targets dark circles. Peptides support collagen.\n\nApply with your ring finger — lightest touch. Best pick: Plum Caffeine Eye Cream.'},
 ];
 
 function getReply(msg){
   const l=msg.toLowerCase();
   for(const r of responses){if(r.keys.some(k=>l.includes(k)))return r.reply;}
-  return 'Good question. For product prices, search above and I\'ll compare across all platforms instantly.\n\nFor skincare advice, ask me about: oily skin, dry skin, acne, sunscreen, Vitamin C, retinol, niacinamide, ceramides, or how to build a morning or night routine.';
+  return 'Good question. For product prices, use the Compare tab. For ingredient explanations, try the Glossary. For a full routine recommendation, open the Routine Builder.\n\nOr ask me about: oily skin, dry skin, acne, sunscreen, Vitamin C, retinol, niacinamide, ceramides, or how to build a routine.';
 }
 
 function addMsg(text,sender){
@@ -1306,7 +1048,6 @@ function addMsg(text,sender){
   msgs.appendChild(d);
   msgs.scrollTop=msgs.scrollHeight;
 }
-
 function showTyping(){
   const msgs=document.getElementById('botMsgs');
   const d=document.createElement('div');
@@ -1315,25 +1056,21 @@ function showTyping(){
   msgs.appendChild(d);
   msgs.scrollTop=msgs.scrollHeight;
 }
-function removeTyping(){
-  const t=document.getElementById('typingIndicator');
-  if(t)t.remove();
-}
-
+function removeTyping(){const t=document.getElementById('typingIndicator');if(t)t.remove();}
 function sendMsg(){
   const inp=document.getElementById('botInput');
   const t=inp.value.trim();
   if(!t)return;
-  addMsg(t,'user');
-  inp.value='';
+  addMsg(t,'user');inp.value='';
   document.getElementById('botQR').style.display='none';
   showTyping();
   setTimeout(()=>{removeTyping();addMsg(getReply(t),'bot');},800+Math.random()*400);
 }
 function sendQ(t){document.getElementById('botInput').value=t;sendMsg();}
 
-// Load all products initially
-renderProducts(products);
+// Init
+renderProducts(products,'All skincare · 18 products across 5 platforms');
+initGlossary();
 </script>
 </body>
 </html>
