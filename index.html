@@ -485,10 +485,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="pincode-bar">
     <div class="pincode-label">📍 Delivery to</div>
     <div class="pincode-input-wrap">
-      <input class="pincode-input" id="pincodeInput" maxlength="6" placeholder="Enter pincode" oninput="this.value=this.value.replace(/\D/g,'')" onkeydown="if(event.key==='Enter')checkPincode()"/>
+      <input class="pincode-input" id="pincodeInput" maxlength="6" value="400001" oninput="this.value=this.value.replace(/\D/g,'')" onkeydown="if(event.key==='Enter')checkPincode()"/>
       <button class="pincode-btn" onclick="checkPincode()">Check</button>
     </div>
-    <div class="pincode-status" id="pincodeStatus">Enter your pincode to see accurate delivery estimates</div>
+    <div class="pincode-status set" id="pincodeStatus">✓ Showing estimates for Mumbai — update for your city</div>
   </div>
   <div id="suggestedSection" style="display:none;"></div>
   <div class="results-wrap" id="resultsWrap"></div>
@@ -603,7 +603,7 @@ function showView(name){
 }
 
 /* ── PINCODE ── */
-let userPincode=null;
+let userPincode='400001'; // demo default — Mumbai
 function checkPincode(){
   const pin=document.getElementById('pincodeInput').value.trim();
   const status=document.getElementById('pincodeStatus');
